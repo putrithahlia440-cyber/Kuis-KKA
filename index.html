@@ -222,31 +222,39 @@
             }
         }
 
-        // FUNGSI PENILAIAN OTOMATIS (REVISI: 'if' DAN 'else' WAJIB HURUF KECIL)
+        // FUNGSI PENILAIAN OTOMATIS DENGAN ATURAN KETAT
         function evaluateAnswers(q1, q2, q3) {
             let score = 0;
             let results = { q1: false, q2: false, q3: false };
 
-            // Evaluasi Soal 1 (Lampu)
-            let q1Clean = q1.toLowerCase().replace(/\s+/g, '');
-            let q1HasValidKeywords = q1.includes('if') && q1.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
-            if (q1HasValidKeywords && q1Clean.includes('input(') && q1Clean.includes('nyala') && q1Clean.includes('print')) {
+            // Helper function untuk memeriksa aturan dasar (if, else, print huruf kecil & penggunaan string)
+            function checkBasicSyntax(text) {
+                let hasIf = text.includes('if');
+                let hasElse = text.includes('else');
+                let hasPrint = text.includes('print(') || text.includes('print (');
+                let hasStringQuotes = text.includes('"') || text.includes("'");
+                let hasInput = text.includes('input(') || text.includes('input (');
+
+                return hasIf && hasElse && hasPrint && hasStringQuotes && hasInput;
+            }
+
+            // --- EVALUASI SOAL 1 (Lampu) ---
+            let q1Lower = q1.toLowerCase();
+            if (checkBasicSyntax(q1) && q1Lower.includes('nyala')) {
                 results.q1 = true;
                 score += 33.33;
             }
 
-            // Evaluasi Soal 2 (Jam Pengumpulan Tugas)
-            let q2Clean = q2.toLowerCase().replace(/\s+/g, '');
-            let q2HasValidKeywords = q2.includes('if') && q2.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
-            if (q2HasValidKeywords && q2Clean.includes('input(') && q2Clean.includes('15') && q2Clean.includes('print')) {
+            // --- EVALUASI SOAL 2 (Jam Pengumpulan: Wajib <=15) ---
+            let q2NoSpace = q2.replace(/\s+/g, '');
+            if (checkBasicSyntax(q2) && q2NoSpace.includes('<=15')) {
                 results.q2 = true;
                 score += 33.33;
             }
 
-            // Evaluasi Soal 3 (Jumlah Buku)
-            let q3Clean = q3.toLowerCase().replace(/\s+/g, '');
-            let q3HasValidKeywords = q3.includes('if') && q3.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
-            if (q3HasValidKeywords && q3Clean.includes('input(') && q3Clean.includes('3') && q3Clean.includes('print')) {
+            // --- EVALUASI SOAL 3 (Jumlah Buku: Wajib >=3) ---
+            let q3NoSpace = q3.replace(/\s+/g, '');
+            if (checkBasicSyntax(q3) && q3NoSpace.includes('>=3')) {
                 results.q3 = true;
                 score += 33.34;
             }
