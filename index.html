@@ -222,43 +222,52 @@
             }
         }
 
-        // FUNGSI PENILAIAN OTOMATIS SANGAT KETAT
+        // FUNGSI PENILAIAN KETAT
         function evaluateAnswers(q1, q2, q3) {
             let score = 0;
             let results = { q1: false, q2: false, q3: false };
 
-            function isStrictValidPython(text) {
-                // Reject jika ada kapitalisasi pada keyword utama
-                let hasUpperKeywords = /IF|If|ELSE|Else|PRINT|Print|INPUT|Input/.test(text);
+            function validatePythonStrict(code) {
+                // 1. Cek huruf kapital pada kata kunci utama
+                let hasUpperKeywords = /\b(IF|If|ELSE|Else|PRINT|Print|INPUT|Input)\b/.test(code);
                 if (hasUpperKeywords) return false;
 
-                // Wajib mengandung sintaks dasar dalam huruf kecil
-                let hasIf = text.includes('if');
-                let hasElse = text.includes('else');
-                let hasPrint = text.includes('print(') || text.includes('print (');
-                let hasInput = text.includes('input(') || text.includes('input (');
-                let hasQuotes = text.includes('"') || text.includes("'");
+                // 2. Cek keberadaan fungsi dasar
+                let hasIf = code.includes('if');
+                let hasElse = code.includes('else');
+                let hasInput = code.includes('input');
+                if (!hasIf || !hasElse || !hasInput) return false;
 
-                return hasIf && hasElse && hasPrint && hasInput && hasQuotes;
+                // 3. Cek wajib tanda petik di dalam print()
+                let printMatches = code.match(/print\s*\(([^)]*)\)/g);
+                if (!printMatches || printMatches.length === 0) return false;
+
+                for (let p of printMatches) {
+                    let insidePrint = p.replace(/^print\s*\(\s*/, '').replace(/\s*\)$/, '').trim();
+                    let isQuoted = /^".*"$/.test(insidePrint) || /^'.*'$/.test(insidePrint);
+                    if (!isQuoted) return false;
+                }
+
+                return true;
             }
 
-            // Soal 1
+            // --- EVALUASI SOAL 1 (Lampu) ---
             let q1Clean = q1.toLowerCase().replace(/\s+/g, '');
-            if (isStrictValidPython(q1) && q1Clean.includes('nyala')) {
+            if (validatePythonStrict(q1) && q1Clean.includes('nyala')) {
                 results.q1 = true;
                 score += 33.33;
             }
 
-            // Soal 2 (Wajib <=15)
+            // --- EVALUASI SOAL 2 (Jam Pengumpulan: Wajib <=15) ---
             let q2Clean = q2.replace(/\s+/g, '');
-            if (isStrictValidPython(q2) && q2Clean.includes('<=15')) {
+            if (validatePythonStrict(q2) && q2Clean.includes('<=15')) {
                 results.q2 = true;
                 score += 33.33;
             }
 
-            // Soal 3 (Wajib >=3)
+            // --- EVALUASI SOAL 3 (Jumlah Buku: Wajib >=3) ---
             let q3Clean = q3.replace(/\s+/g, '');
-            if (isStrictValidPython(q3) && q3Clean.includes('>=3')) {
+            if (validatePythonStrict(q3) && q3Clean.includes('>=3')) {
                 results.q3 = true;
                 score += 33.34;
             }
