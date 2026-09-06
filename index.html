@@ -128,10 +128,10 @@
                 <option value="X-B">X-B</option>
                 <option value="X-C">X-C</option>
                 <option value="X-D">X-D</option>
-		<option value="X-E">X-E</option>
-		<option value="X-F">X-F</option>
-		<option value="X-G">X-G</option>
-		<option value="X-H">X-H</option>
+                <option value="X-E">X-E</option>
+                <option value="X-F">X-F</option>
+                <option value="X-G">X-G</option>
+                <option value="X-H">X-H</option>
             </select>
         </div>
 
@@ -147,7 +147,7 @@
         </div>
 
         <form id="quiz-form">
-            <!-- Soal 1 (Direnvisi ke Kondisi Lampu) -->
+            <!-- Soal 1 -->
             <div class="question">
                 <p>1. Ubah kalimat logika berikut menjadi kode program Python:</p>
                 <blockquote>
@@ -181,7 +181,7 @@
     <script>
         let quizStarted = false;
 
-        // LINK GOOGLE APPS SCRIPT IBU
+        // LINK GOOGLE APPS SCRIPT
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyh5chDLmqilsUmkHc2fBmO8NRazTBWRwyW0ow4JiwT-6KEJxUTkS_dBgy6qAWU98mzbQ/exec";
 
         document.addEventListener('copy', (e) => e.preventDefault());
@@ -222,38 +222,39 @@
             }
         }
 
-        // FUNGSI PENILAIAN OTOMATIS
+        // FUNGSI PENILAIAN OTOMATIS (REVISI: 'if' DAN 'else' WAJIB HURUF KECIL)
         function evaluateAnswers(q1, q2, q3) {
             let score = 0;
             let results = { q1: false, q2: false, q3: false };
 
             // Evaluasi Soal 1 (Lampu)
             let q1Clean = q1.toLowerCase().replace(/\s+/g, '');
-            let q1HasValidKeywords = q1.includes('if') && q1.includes('else'); // Wajib huruf kecil!
-         if (q1HasValidKeywords && q1Clean.includes('input(') && q1Clean.includes('nyala') && q1Clean.includes('print')) {
-        results.q1 = true;
-        score += 33.33;
-    }
+            let q1HasValidKeywords = q1.includes('if') && q1.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
+            if (q1HasValidKeywords && q1Clean.includes('input(') && q1Clean.includes('nyala') && q1Clean.includes('print')) {
+                results.q1 = true;
+                score += 33.33;
+            }
 
-    // Soal 2 (Jam Pengumpulan)
-    let q2Clean = q2.toLowerCase().replace(/\s+/g, '');
-    let q2HasValidKeywords = q2.includes('if') && q2.includes('else'); // Wajib huruf kecil!
-    if (q2HasValidKeywords && q2Clean.includes('input(') && q2Clean.includes('15') && q2Clean.includes('print')) {
-        results.q2 = true;
-        score += 33.33;
-    }
+            // Evaluasi Soal 2 (Jam Pengumpulan Tugas)
+            let q2Clean = q2.toLowerCase().replace(/\s+/g, '');
+            let q2HasValidKeywords = q2.includes('if') && q2.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
+            if (q2HasValidKeywords && q2Clean.includes('input(') && q2Clean.includes('15') && q2Clean.includes('print')) {
+                results.q2 = true;
+                score += 33.33;
+            }
 
-    // Soal 3 (Jumlah Buku)
-    let q3Clean = q3.toLowerCase().replace(/\s+/g, '');
-    let q3HasValidKeywords = q3.includes('if') && q3.includes('else'); // Wajib huruf kecil!
-    if (q3HasValidKeywords && q3Clean.includes('input(') && q3Clean.includes('3') && q3Clean.includes('print')) {
-        results.q3 = true;
-        score += 33.34;
-    }
+            // Evaluasi Soal 3 (Jumlah Buku)
+            let q3Clean = q3.toLowerCase().replace(/\s+/g, '');
+            let q3HasValidKeywords = q3.includes('if') && q3.includes('else'); // Memeriksa huruf kecil pada 'if' & 'else'
+            if (q3HasValidKeywords && q3Clean.includes('input(') && q3Clean.includes('3') && q3Clean.includes('print')) {
+                results.q3 = true;
+                score += 33.34;
+            }
 
-    let finalScore = Math.round(score);
-    return { score: finalScore, results: results };
-}
+            let finalScore = Math.round(score);
+            return { score: finalScore, results: results };
+        }
+
         function submitQuiz(status) {
             if (!quizStarted && status.includes('OTOMATIS')) return;
             quizStarted = false;
