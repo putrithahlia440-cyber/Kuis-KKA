@@ -465,9 +465,12 @@ button:disabled {
 
       <div class="question-text">
 
-        Buat program Python yang meminta pengguna
-        memasukkan kondisi lampu berupa
-        <strong>"nyala"</strong> atau
+        Buatlah sebuah program untuk menentukan kondisi lampu.
+
+        <br><br>
+
+        Program meminta pengguna memasukkan kondisi lampu
+        berupa <strong>"nyala"</strong> atau
         <strong>"mati"</strong>.
 
         <br><br>
@@ -479,7 +482,8 @@ button:disabled {
 
         <br><br>
 
-        Jika bukan, tampilkan:
+        Jika kondisi yang dimasukkan bukan
+        <strong>"nyala"</strong>, tampilkan:
 
         <strong>"Lampu sedang mati"</strong>.
 
@@ -514,8 +518,14 @@ button:disabled {
 
       <div class="question-text">
 
-        Buat program Python yang meminta pengguna
-        memasukkan jam pengumpulan tugas.
+        Buatlah sebuah program untuk menentukan apakah
+        tugas masih dapat diterima berdasarkan jam
+        pengumpulannya.
+
+        <br><br>
+
+        Program meminta pengguna memasukkan jam
+        pengumpulan tugas.
 
         <br><br>
 
@@ -527,7 +537,7 @@ button:disabled {
 
         <br><br>
 
-        Jika lebih dari 15, tampilkan:
+        Jika jam pengumpulan lebih dari 15, tampilkan:
 
         <strong>"Tugas terlambat"</strong>.
 
@@ -562,8 +572,12 @@ button:disabled {
 
       <div class="question-text">
 
-        Buat program Python yang meminta pengguna
-        memasukkan jumlah buku.
+        Buatlah sebuah program untuk menentukan apakah
+        jumlah buku yang dimiliki sudah mencukupi.
+
+        <br><br>
+
+        Program meminta pengguna memasukkan jumlah buku.
 
         <br><br>
 
@@ -575,7 +589,7 @@ button:disabled {
 
         <br><br>
 
-        Jika kurang dari 3, tampilkan:
+        Jika jumlah buku kurang dari 3, tampilkan:
 
         <strong>"Buku masih kurang"</strong>.
 
@@ -680,15 +694,6 @@ button:disabled {
 /* =====================================================
    URL APPS SCRIPT
 ===================================================== */
-
-/*
-  GANTI bagian ini dengan URL Web App TERBARU.
-
-  Contoh:
-
-  const APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/XXXXXXXX/exec";
-*/
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzS4KVAX3Ip6XUjH12ZtKXD7zxxQlyXhU1TlbVDkfBKdzQVxbQ50u_FFBoZAAVjoliDAg/exec";
@@ -1039,14 +1044,7 @@ function masukFullscreen() {
 
     elem
       .requestFullscreen()
-      .catch(function() {
-
-        /*
-          Browser dapat menolak fullscreen.
-          Kuis tetap berjalan.
-        */
-
-      });
+      .catch(function() {});
 
   }
 
@@ -1071,12 +1069,6 @@ document.addEventListener(
 
       escDitekan = true;
 
-
-      /*
-        Jika sedang fullscreen,
-        ESC langsung dianggap sebagai
-        alasan auto submit.
-      */
 
       if (document.fullscreenElement) {
 
@@ -1121,20 +1113,10 @@ document.addEventListener(
 
     if (!document.fullscreenElement) {
 
-      /*
-        Jika submit sudah berjalan,
-        jangan kirim dua kali.
-      */
-
       if (sudahSubmit) {
         return;
       }
 
-
-      /*
-        Jika ESC sudah menyebabkan submit,
-        jangan lakukan submit kedua.
-      */
 
       if (escDitekan) {
 
@@ -1279,11 +1261,6 @@ function konfirmasiSubmitManual() {
       .trim();
 
 
-  /*
-    MANUAL:
-    semua jawaban wajib diisi.
-  */
-
   if (
     !jawaban1 ||
     !jawaban2 ||
@@ -1357,10 +1334,6 @@ function kirimJawaban(otomatis) {
       .value;
 
 
-  /*
-    Status pengerjaan
-  */
-
   let statusPengerjaan;
 
 
@@ -1377,11 +1350,6 @@ function kirimJawaban(otomatis) {
 
   }
 
-
-  /*
-    Jika auto submit,
-    catatan harus dikirim.
-  */
 
   let catatan;
 
@@ -1441,10 +1409,6 @@ function kirimJawaban(otomatis) {
     "Mengirim...";
 
 
-  /*
-    Tombol dibuat disabled.
-  */
-
   const tombol =
     document.getElementById("btnSubmit");
 
@@ -1468,11 +1432,6 @@ function kirimJawaban(otomatis) {
     function(data) {
 
       if (!data || !data.sukses) {
-
-        /*
-          Jika server mengatakan sudah submit,
-          tetap tampilkan pesan.
-        */
 
         document
           .getElementById("halamanKuis")
@@ -1511,11 +1470,6 @@ function kirimJawaban(otomatis) {
     },
 
     function(error) {
-
-      /*
-        Jika gagal karena koneksi,
-        beri tahu siswa.
-      */
 
       document
         .getElementById("halamanKuis")
@@ -1574,10 +1528,6 @@ function tampilkanHasil(
     .classList.remove("hidden");
 
 
-  /*
-    Nilai akhir
-  */
-
   const nilai =
     Number(data.nilai || 0);
 
@@ -1588,12 +1538,8 @@ function tampilkanHasil(
     nilai.toFixed(2);
 
 
-  /*
-    Pesan hasil
-  */
-
   let pesan =
-    "Jawaban Anda telah dinilai berdasarkan syntax, input, struktur IF-ELSE, kondisi/logika, dan output.";
+    "Jawaban Anda telah dinilai berdasarkan ketepatan program yang dibuat.";
 
 
   document
@@ -1601,10 +1547,6 @@ function tampilkanHasil(
     .textContent =
     pesan;
 
-
-  /*
-    Catatan auto submit
-  */
 
   const catatanAuto =
     document.getElementById("catatanAuto");
@@ -1631,18 +1573,10 @@ function tampilkanHasil(
   }
 
 
-  /*
-    Evaluasi
-  */
-
   tampilkanEvaluasi(
     data.evaluasi || []
   );
 
-
-  /*
-    Keluar fullscreen setelah selesai.
-  */
 
   if (document.fullscreenElement) {
 
@@ -1721,10 +1655,6 @@ function tampilkanEvaluasi(
         "evaluation-card";
 
 
-      /*
-        HEADER
-      */
-
       const header =
         document.createElement(
           "div"
@@ -1768,10 +1698,6 @@ function tampilkanEvaluasi(
         " / 33,33";
 
 
-      /*
-        Soal 3 maksimal 33,34
-      */
-
       if (item.nomor === 3) {
 
         score.textContent =
@@ -1790,10 +1716,6 @@ function tampilkanEvaluasi(
       card.appendChild(header);
 
 
-      /*
-        STATUS
-      */
-
       const status =
         document.createElement(
           "div"
@@ -1811,10 +1733,6 @@ function tampilkanEvaluasi(
 
       card.appendChild(status);
 
-
-      /*
-        KOMPONEN
-      */
 
       const list =
         document.createElement(
@@ -1853,10 +1771,6 @@ function tampilkanEvaluasi(
 
       card.appendChild(list);
 
-
-      /*
-        DETAIL KESALAHAN
-      */
 
       if (
         item.detail &&
