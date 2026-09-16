@@ -1,20 +1,25 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kuis KKA - Logika IF-ELSE Python</title>
+
     <style>
         * {
             box-sizing: border-box;
             user-select: none;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f6f9;
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -23,20 +28,30 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-top: 0;}
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
         .form-group {
             margin-bottom: 15px;
             text-align: left;
             width: 100%;
             max-width: 400px;
         }
+
         .form-group label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
             color: #ffffff;
         }
-        .form-group input, .form-group select {
+
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -44,6 +59,7 @@
             font-size: 14px;
             color: #333;
         }
+
         .alert-info {
             background-color: #e74c3c;
             color: white;
@@ -54,18 +70,38 @@
             text-align: center;
             font-size: 14px;
         }
-        .question { margin-bottom: 25px; }
-        .question p { font-weight: 600; color: #34495e; line-height: 1.5; }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question p {
+            font-weight: 600;
+            color: #34495e;
+            line-height: 1.5;
+        }
+
+        blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin: 10px 0 15px;
+            line-height: 1.6;
+            color: #34495e;
+        }
+
         textarea {
             width: 100%;
-            height: 110px;
+            height: 140px;
             font-family: 'Courier New', Courier, monospace;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             resize: vertical;
             font-size: 14px;
+            line-height: 1.5;
         }
+
         .btn {
             background-color: #2ecc71;
             color: white;
@@ -77,12 +113,24 @@
             font-weight: bold;
             width: 100%;
         }
-        .btn:hover { background-color: #27ae60; }
-        
-        /* Modal Start Overlay */
+
+        .btn:hover {
+            background-color: #27ae60;
+        }
+
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        /* MODAL AWAL */
+
         #start-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,0.95);
             color: white;
             display: flex;
@@ -92,7 +140,9 @@
             z-index: 1000;
             padding: 20px;
             text-align: center;
+            overflow-y: auto;
         }
+
         #start-btn {
             background: #3498db;
             color: white;
@@ -106,237 +156,1144 @@
             width: 100%;
             max-width: 400px;
         }
+
+        #start-btn:disabled {
+            background: #7f8c8d;
+            cursor: not-allowed;
+        }
+
+        .checking {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #f1c40f;
+            display: none;
+        }
+
+        /* PESAN SUDAH MENGERJAKAN */
+
+        #already-done {
+            display: none;
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        /* HASIL */
+
+        .correct {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: #e74c3c;
+            font-weight: bold;
+        }
     </style>
 </head>
+
 <body oncontextmenu="return false;">
 
-    <!-- MODAL AWAL: IDENTITAS SISWA -->
-    <div id="start-overlay">
-        <h1>Kuis KKA: Logika IF-ELSE Python</h1>
-        <p>⚠️ <strong>PERATURAN KETAT KUIS:</strong></p>
-        <p style="color: #ff6b6b; margin-bottom: 20px;">Dilarang berpindah tab / keluar layar penuh atau kuis akan TERKIRIM OTOMATIS!</p>
+<!-- =========================================================
+     MODAL IDENTITAS
+========================================================= -->
 
-        <div class="form-group">
-            <label for="student-name">Nama Lengkap Siswa:</label>
-            <input type="text" id="student-name" placeholder="Ketik nama lengkap..." required>
-        </div>
-        <div class="form-group">
-            <label for="student-class">Kelas:</label>
-            <select id="student-class" required>
-                <option value="">-- Pilih Kelas --</option>
-                <option value="X-A">X-A</option>
-                <option value="X-B">X-B</option>
-                <option value="X-C">X-C</option>
-                <option value="X-D">X-D</option>
-                <option value="X-E">X-E</option>
-                <option value="X-F">X-F</option>
-                <option value="X-G">X-G</option>
-                <option value="X-H">X-H</option>
-            </select>
-        </div>
+<div id="start-overlay">
 
-        <button id="start-btn" onclick="startQuiz()">Mulai Kuis (Masuk Layar Penuh)</button>
+    <h1>Kuis KKA: Logika IF-ELSE Python</h1>
+
+    <p>⚠️ <strong>PERATURAN KUIS</strong></p>
+
+    <p style="color:#ff6b6b; max-width:600px;">
+        Setiap siswa hanya memiliki <strong>1 kali kesempatan</strong>
+        mengerjakan kuis.
+        Jika nama dan kelas sudah tercatat dalam sistem,
+        siswa tidak dapat mengulang kuis.
+    </p>
+
+    <p style="color:#f1c40f; max-width:600px;">
+        ⚠️ Jangan berpindah tab atau keluar dari layar penuh.
+        Tindakan tersebut dapat menyebabkan jawaban dikirim otomatis.
+    </p>
+
+    <div class="form-group">
+
+        <label for="student-name">
+            Nama Lengkap Siswa:
+        </label>
+
+        <input
+            type="text"
+            id="student-name"
+            placeholder="Ketik nama lengkap..."
+            autocomplete="off"
+            required
+        >
+
     </div>
 
-    <!-- TAMPILAN SOAL KUIS -->
-    <div class="container">
-        <h2>Mata Pelajaran: Koding & Kecerdasan Artifisial (KKA)</h2>
-        
-        <div class="alert-info">
-            🔒 Mode Aman Aktif: Berpindah Tab/Layar akan langsung KELUAR & SUBMIT OTOMATIS!
-        </div>
+    <div class="form-group">
 
-        <form id="quiz-form">
-            <!-- Soal 1 -->
-            <div class="question">
-                <p>1. Ubah kalimat logika berikut menjadi kode program Python:</p>
-                <blockquote>
-                    "Mintalah pengguna memasukkan kondisi lampu dengan mengetik 'nyala' atau 'mati'. Jika pengguna memasukkan 'nyala', tampilkan 'Lampu sedang menyala'. Jika tidak, tampilkan 'Lampu sedang mati'."
-                </blockquote>
-                <textarea id="q1" placeholder="Tuliskan kode Python di sini..." required></textarea>
-            </div>
+        <label for="student-class">
+            Kelas:
+        </label>
 
-            <!-- Soal 2 -->
-            <div class="question">
-                <p>2. Ubah kalimat logika berikut menjadi kode program Python:</p>
-                <blockquote>
-                    "Mintalah pengguna memasukkan jam pengumpulan tugas. Jika tugas dikumpulkan sebelum atau pada pukul 15, tampilkan 'Tugas diterima'. Jika lebih dari pukul 15, tampilkan 'Tugas terlambat'."
-                </blockquote>
-                <textarea id="q2" placeholder="Tuliskan kode Python di sini..." required></textarea>
-            </div>
+        <select id="student-class" required>
 
-            <!-- Soal 3 -->
-            <div class="question">
-                <p>3. Ubah kalimat logika berikut menjadi kode program Python:</p>
-                <blockquote>
-                    "Mintalah pengguna memasukkan jumlah buku yang dibawa ke sekolah. Jika jumlah buku minimal 3, tampilkan 'Buku sudah cukup'. Jika kurang dari 3, tampilkan 'Buku masih kurang'."
-                </blockquote>
-                <textarea id="q3" placeholder="Tuliskan kode Python di sini..." required></textarea>
-            </div>
+            <option value="">
+                -- Pilih Kelas --
+            </option>
 
-            <button type="button" class="btn" onclick="submitQuiz('Selesai Normal (Manual)')">Kirim Jawaban</button>
-        </form>
+            <option value="X-A">X-A</option>
+            <option value="X-B">X-B</option>
+            <option value="X-C">X-C</option>
+            <option value="X-D">X-D</option>
+            <option value="X-E">X-E</option>
+            <option value="X-F">X-F</option>
+            <option value="X-G">X-G</option>
+            <option value="X-H">X-H</option>
+
+        </select>
+
     </div>
 
-    <script>
-        let quizStarted = false;
+    <button id="start-btn" onclick="startQuiz()">
+        Mulai Kuis (Masuk Layar Penuh)
+    </button>
 
-        // LINK GOOGLE APPS SCRIPT
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyh5chDLmqilsUmkHc2fBmO8NRazTBWRwyW0ow4JiwT-6KEJxUTkS_dBgy6qAWU98mzbQ/exec";
+    <div id="checking" class="checking">
+        🔎 Memeriksa data siswa...
+    </div>
 
-        document.addEventListener('copy', (e) => e.preventDefault());
-        document.addEventListener('paste', (e) => e.preventDefault());
+    <div id="already-done">
 
-        function startQuiz() {
-            let name = document.getElementById('student-name').value;
-            let studentClass = document.getElementById('student-class').value;
+        <h3>⚠️ Kuis Sudah Dikerjakan</h3>
 
-            if (!name || !studentClass) {
-                alert("Harap isi Nama Lengkap dan Pilih Kelas terlebih dahulu!");
-                return;
-            }
+        <p>
+            Nama dan kelas tersebut sudah tercatat dalam sistem.
+        </p>
 
-            quizStarted = true;
-            document.getElementById('start-overlay').style.display = 'none';
-            
-            let elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
+        <p>
+            Setiap siswa hanya memiliki <strong>1 kali kesempatan</strong>
+            mengerjakan kuis.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TAMPILAN KUIS
+========================================================= -->
+
+<div class="container">
+
+    <h2>
+        Mata Pelajaran: Koding & Kecerdasan Artifisial (KKA)
+    </h2>
+
+    <div class="alert-info">
+        🔒 Mode Aman Aktif:
+        Berpindah Tab/Layar dapat menyebabkan kuis dikirim otomatis.
+    </div>
+
+    <form id="quiz-form">
+
+        <!-- SOAL 1 -->
+
+        <div class="question">
+
+            <p>
+                1. Ubah kalimat logika berikut menjadi kode program Python:
+            </p>
+
+            <blockquote>
+                "Mintalah pengguna memasukkan kondisi lampu dengan mengetik
+                'nyala' atau 'mati'. Jika pengguna memasukkan 'nyala',
+                tampilkan 'Lampu sedang menyala'. Jika tidak,
+                tampilkan 'Lampu sedang mati'."
+            </blockquote>
+
+            <textarea
+                id="q1"
+                placeholder="Tuliskan kode Python di sini..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <!-- SOAL 2 -->
+
+        <div class="question">
+
+            <p>
+                2. Ubah kalimat logika berikut menjadi kode program Python:
+            </p>
+
+            <blockquote>
+                "Mintalah pengguna memasukkan jam pengumpulan tugas.
+                Jika tugas dikumpulkan sebelum atau pada pukul 15,
+                tampilkan 'Tugas diterima'. Jika lebih dari pukul 15,
+                tampilkan 'Tugas terlambat'."
+            </blockquote>
+
+            <textarea
+                id="q2"
+                placeholder="Tuliskan kode Python di sini..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <!-- SOAL 3 -->
+
+        <div class="question">
+
+            <p>
+                3. Ubah kalimat logika berikut menjadi kode program Python:
+            </p>
+
+            <blockquote>
+                "Mintalah pengguna memasukkan jumlah buku yang dibawa
+                ke sekolah. Jika jumlah buku minimal 3, tampilkan
+                'Buku sudah cukup'. Jika kurang dari 3, tampilkan
+                'Buku masih kurang'."
+            </blockquote>
+
+            <textarea
+                id="q3"
+                placeholder="Tuliskan kode Python di sini..."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn"
+            onclick="submitQuiz('Selesai Normal (Manual)')"
+        >
+            Kirim Jawaban
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+let quizStarted = false;
+let submitting = false;
+
+
+/* =========================================================
+   GOOGLE APPS SCRIPT
+========================================================= */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbyh5chDLmqilsUmkHc2fBmO8NRazTBWRwyW0ow4JiwT-6KEJxUTkS_dBgy6qAWU98mzbQ/exec";
+
+
+/* =========================================================
+   BLOK COPY / PASTE
+========================================================= */
+
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('paste', function(e) {
+    e.preventDefault();
+});
+
+
+/* =========================================================
+   NORMALISASI NAMA
+========================================================= */
+
+function normalizeName(name) {
+
+    return name
+        .trim()
+        .replace(/\s+/g, ' ')
+        .toLowerCase();
+
+}
+
+
+/* =========================================================
+   CEK APAKAH SUDAH PERNAH MENGERJAKAN
+========================================================= */
+
+async function checkDuplicate() {
+
+    const name =
+        document.getElementById('student-name').value;
+
+    const studentClass =
+        document.getElementById('student-class').value;
+
+    if (!name || !studentClass) {
+
+        alert(
+            "Harap isi Nama Lengkap dan pilih Kelas terlebih dahulu!"
+        );
+
+        return false;
+    }
+
+    const normalizedName =
+        normalizeName(name);
+
+    /*
+       Pengamanan tambahan di perangkat/browser.
+    */
+
+    const localKey =
+        "KKA_IFELSE_" +
+        normalizedName +
+        "_" +
+        studentClass;
+
+    if (localStorage.getItem(localKey) === "DONE") {
+
+        document.getElementById('already-done').style.display = 'block';
+
+        alert(
+            "Nama tersebut sudah digunakan untuk mengerjakan kuis pada perangkat ini."
+        );
+
+        return false;
+    }
+
+
+    /*
+       Cek ke Google Apps Script / Google Sheets.
+    */
+
+    document.getElementById('checking').style.display = 'block';
+
+    document.getElementById('start-btn').disabled = true;
+
+    try {
+
+        const response = await fetch(
+            SCRIPT_URL +
+            "?action=check&nama=" +
+            encodeURIComponent(normalizedName) +
+            "&kelas=" +
+            encodeURIComponent(studentClass)
+        );
+
+        const data = await response.json();
+
+        document.getElementById('checking').style.display = 'none';
+
+        if (data.exists === true) {
+
+            document.getElementById('already-done').style.display = 'block';
+
+            alert(
+                "Nama dan kelas tersebut sudah pernah mengerjakan kuis. Kesempatan kedua tidak tersedia."
+            );
+
+            document.getElementById('start-btn').disabled = true;
+
+            return false;
         }
 
-        document.addEventListener("visibilitychange", function() {
-            if (document.hidden && quizStarted) {
-                submitQuiz('TERKIRIM OTOMATIS (Siswa Pindah Tab/Aplikasi)');
-            }
-        });
+        document.getElementById('start-btn').disabled = false;
 
-        document.addEventListener('fullscreenchange', exitHandler);
-        function exitHandler() {
-            if (!document.fullscreenElement && quizStarted) {
-                submitQuiz('TERKIRIM OTOMATIS (Siswa Keluar Layar Penuh)');
-            }
+        return true;
+
+    } catch (error) {
+
+        document.getElementById('checking').style.display = 'none';
+
+        document.getElementById('start-btn').disabled = false;
+
+        alert(
+            "Sistem tidak dapat memeriksa data siswa. Pastikan koneksi internet aktif."
+        );
+
+        console.error(error);
+
+        return false;
+    }
+
+}
+
+
+/* =========================================================
+   MULAI KUIS
+========================================================= */
+
+async function startQuiz() {
+
+    const name =
+        document.getElementById('student-name').value.trim();
+
+    const studentClass =
+        document.getElementById('student-class').value;
+
+
+    if (!name || !studentClass) {
+
+        alert(
+            "Harap isi Nama Lengkap dan Pilih Kelas terlebih dahulu!"
+        );
+
+        return;
+    }
+
+
+    const allowed =
+        await checkDuplicate();
+
+
+    if (!allowed) {
+        return;
+    }
+
+
+    quizStarted = true;
+
+    document.getElementById('start-overlay').style.display = 'none';
+
+
+    /*
+       Tandai perangkat sebagai sedang digunakan.
+    */
+
+    const localKey =
+        "KKA_IFELSE_" +
+        normalizeName(name) +
+        "_" +
+        studentClass;
+
+    localStorage.setItem(localKey, "STARTED");
+
+
+    /*
+       Masuk layar penuh.
+    */
+
+    const elem = document.documentElement;
+
+    try {
+
+        if (elem.requestFullscreen) {
+
+            await elem.requestFullscreen();
+
+        } else if (elem.webkitRequestFullscreen) {
+
+            elem.webkitRequestFullscreen();
+
+        } else if (elem.msRequestFullscreen) {
+
+            elem.msRequestFullscreen();
+
         }
 
-        // FUNGSI PENILAIAN KETAT
-        function evaluateAnswers(q1, q2, q3) {
-            let score = 0;
-            let results = { q1: false, q2: false, q3: false };
+    } catch (error) {
 
-            function validatePythonStrict(code) {
-                // 1. Cek huruf kapital pada kata kunci utama
-                let hasUpperKeywords = /\b(IF|If|ELSE|Else|PRINT|Print|INPUT|Input)\b/.test(code);
-                if (hasUpperKeywords) return false;
+        console.log("Fullscreen tidak tersedia:", error);
 
-                // 2. Cek keberadaan fungsi dasar
-                let hasIf = code.includes('if');
-                let hasElse = code.includes('else');
-                let hasInput = code.includes('input');
-                if (!hasIf || !hasElse || !hasInput) return false;
+    }
 
-                // 3. Cek wajib tanda petik di dalam print()
-                let printMatches = code.match(/print\s*\(([^)]*)\)/g);
-                if (!printMatches || printMatches.length === 0) return false;
+}
 
-                for (let p of printMatches) {
-                    let insidePrint = p.replace(/^print\s*\(\s*/, '').replace(/\s*\)$/, '').trim();
-                    let isQuoted = /^".*"$/.test(insidePrint) || /^'.*'$/.test(insidePrint);
-                    if (!isQuoted) return false;
-                }
 
-                return true;
-            }
+/* =========================================================
+   VALIDASI NAMA VARIABEL PYTHON
+========================================================= */
 
-            // --- EVALUASI SOAL 1 (Lampu) ---
-            let q1Clean = q1.toLowerCase().replace(/\s+/g, '');
-            if (validatePythonStrict(q1) && q1Clean.includes('nyala')) {
-                results.q1 = true;
-                score += 33.33;
-            }
+/*
+   Nama variabel Python yang valid:
+   
+   jumlah_buku  ✅
+   jam_pengumpulan ✅
+   buku1 ✅
+   
+   jumlah buku ❌
+   jumlah-buku ❌
+*/
 
-            // --- EVALUASI SOAL 2 (Jam Pengumpulan: Wajib <=15) ---
-            let q2Clean = q2.replace(/\s+/g, '');
-            if (validatePythonStrict(q2) && q2Clean.includes('<=15')) {
-                results.q2 = true;
-                score += 33.33;
-            }
+function hasInvalidVariable(code) {
 
-            // --- EVALUASI SOAL 3 (Jumlah Buku: Wajib >=3) ---
-            let q3Clean = q3.replace(/\s+/g, '');
-            if (validatePythonStrict(q3) && q3Clean.includes('>=3')) {
-                results.q3 = true;
-                score += 33.34;
-            }
+    /*
+       Mendeteksi pola:
+       jumlah buku
+       jam pengumpulan
+       
+       tetapi tidak mengganggu string.
+    */
 
-            let finalScore = Math.round(score);
-            return { score: finalScore, results: results };
+    const lines = code.split('\n');
+
+    for (let line of lines) {
+
+        /*
+           Jika terdapat pola dua kata sebelum =
+           tanpa underscore.
+        */
+
+        if (
+            /\b[a-zA-Z_][a-zA-Z0-9_]*\s+[a-zA-Z_][a-zA-Z0-9_]*\s*=/.test(line)
+        ) {
+
+            return true;
         }
 
-        function submitQuiz(status) {
-            if (!quizStarted && status.includes('OTOMATIS')) return;
-            quizStarted = false;
+    }
 
-            let name = document.getElementById('student-name').value;
-            let studentClass = document.getElementById('student-class').value;
-            let q1 = document.getElementById('q1').value;
-            let q2 = document.getElementById('q2').value;
-            let q3 = document.getElementById('q3').value;
+    /*
+       Tanda minus dalam nama variabel juga tidak valid.
+    */
 
-            let evalRes = evaluateAnswers(q1, q2, q3);
+    if (
+        /\b[a-zA-Z_][a-zA-Z0-9_]*-[a-zA-Z_][a-zA-Z0-9_]*/.test(code)
+    ) {
 
-            if (document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.log(err));
-            }
+        return true;
+    }
 
-            let formData = new FormData();
-            formData.append("nama", name);
-            formData.append("kelas", studentClass);
-            formData.append("soal1", q1);
-            formData.append("soal2", q2);
-            formData.append("soal3", q3);
-            formData.append("status", status + ` | Nilai: ${evalRes.score}`);
+    return false;
+}
 
-            fetch(SCRIPT_URL, {
+
+/* =========================================================
+   VALIDASI DASAR PYTHON
+========================================================= */
+
+function validatePythonStrict(code) {
+
+    /*
+       1. Keyword Python harus huruf kecil.
+    */
+
+    let hasUpperKeywords =
+        /\b(IF|If|ELSE|Else|PRINT|Print|INPUT|Input)\b/
+        .test(code);
+
+    if (hasUpperKeywords) {
+        return false;
+    }
+
+
+    /*
+       2. Tidak boleh ada nama variabel dengan spasi.
+    */
+
+    if (hasInvalidVariable(code)) {
+        return false;
+    }
+
+
+    /*
+       3. Wajib ada if, else, input.
+    */
+
+    let hasIf =
+        /\bif\b/.test(code);
+
+    let hasElse =
+        /\belse\b/.test(code);
+
+    let hasInput =
+        /\binput\s*\(/.test(code);
+
+    if (!hasIf || !hasElse || !hasInput) {
+        return false;
+    }
+
+
+    /*
+       4. Wajib ada print().
+    */
+
+    let printMatches =
+        code.match(/print\s*\(([^)]*)\)/g);
+
+    if (!printMatches || printMatches.length < 2) {
+        return false;
+    }
+
+
+    /*
+       5. Isi print harus berupa teks.
+    */
+
+    for (let p of printMatches) {
+
+        let insidePrint =
+            p
+            .replace(/^print\s*\(\s*/, '')
+            .replace(/\s*\)$/, '')
+            .trim();
+
+        let isQuoted =
+            /^".*"$/.test(insidePrint) ||
+            /^'.*'$/.test(insidePrint);
+
+        if (!isQuoted) {
+            return false;
+        }
+
+    }
+
+
+    /*
+       6. Periksa titik dua setelah if dan else.
+    */
+
+    if (!/\bif\b[^\n]*:/.test(code)) {
+        return false;
+    }
+
+    if (!/\belse\s*:/.test(code)) {
+        return false;
+    }
+
+
+    return true;
+}
+
+
+/* =========================================================
+   EVALUASI SOAL
+========================================================= */
+
+function evaluateAnswers(q1, q2, q3) {
+
+    let score = 0;
+
+    let results = {
+        q1: false,
+        q2: false,
+        q3: false
+    };
+
+
+    /* =====================================================
+       SOAL 1 - LAMPU
+    ===================================================== */
+
+    let q1Clean =
+        q1.toLowerCase()
+          .replace(/\s+/g, ' ');
+
+    /*
+       Harus ada:
+       input
+       if
+       else
+       nyala
+       lampu sedang menyala
+       lampu sedang mati
+    */
+
+    if (
+
+        validatePythonStrict(q1)
+
+        && /\bnyala\b/.test(q1Clean)
+
+        && /lampu sedang menyala/.test(q1Clean)
+
+        && /lampu sedang mati/.test(q1Clean)
+
+    ) {
+
+        results.q1 = true;
+
+        score += 33.33;
+    }
+
+
+    /* =====================================================
+       SOAL 2 - JAM PENGUMPULAN
+    ===================================================== */
+
+    let q2Clean =
+        q2.replace(/\s+/g, '');
+
+
+    /*
+       Kondisi harus:
+       <= 15
+    */
+
+    if (
+
+        validatePythonStrict(q2)
+
+        && /<=15/.test(q2Clean)
+
+        && /tugas diterima/i.test(q2)
+
+        && /tugas terlambat/i.test(q2)
+
+    ) {
+
+        results.q2 = true;
+
+        score += 33.33;
+    }
+
+
+    /* =====================================================
+       SOAL 3 - JUMLAH BUKU
+    ===================================================== */
+
+    let q3Clean =
+        q3.replace(/\s+/g, '');
+
+
+    /*
+       Siswa BOLEH menggunakan:
+       
+       jumlah_buku
+       banyak_buku
+       buku
+       total_buku
+       
+       selama nama variabelnya valid.
+       
+       Contoh:
+       
+       jumlah_buku = int(input(...))
+       
+       if jumlah_buku >= 3:
+           print("Buku sudah cukup")
+       
+       else:
+           print("Buku masih kurang")
+    */
+
+    if (
+
+        validatePythonStrict(q3)
+
+        && />=3/.test(q3Clean)
+
+        && /buku sudah cukup/i.test(q3)
+
+        && /buku masih kurang/i.test(q3)
+
+    ) {
+
+        results.q3 = true;
+
+        score += 33.34;
+    }
+
+
+    return {
+        score: Math.round(score),
+        results: results
+    };
+
+}
+
+
+/* =========================================================
+   SUBMIT KUIS
+========================================================= */
+
+async function submitQuiz(status) {
+
+    if (submitting) {
+        return;
+    }
+
+    if (
+        !quizStarted &&
+        status.includes('OTOMATIS')
+    ) {
+        return;
+    }
+
+
+    submitting = true;
+
+    quizStarted = false;
+
+
+    const name =
+        document.getElementById('student-name').value;
+
+    const studentClass =
+        document.getElementById('student-class').value;
+
+    const q1 =
+        document.getElementById('q1').value;
+
+    const q2 =
+        document.getElementById('q2').value;
+
+    const q3 =
+        document.getElementById('q3').value;
+
+
+    /*
+       Penilaian.
+    */
+
+    const evalRes =
+        evaluateAnswers(q1, q2, q3);
+
+
+    /*
+       Tandai bahwa siswa sudah menggunakan kesempatan.
+    */
+
+    const localKey =
+        "KKA_IFELSE_" +
+        normalizeName(name) +
+        "_" +
+        studentClass;
+
+    localStorage.setItem(localKey, "DONE");
+
+
+    /*
+       Keluar fullscreen.
+    */
+
+    if (document.fullscreenElement) {
+
+        try {
+
+            await document.exitFullscreen();
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    }
+
+
+    /*
+       Kirim data ke Google Sheets.
+    */
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "action",
+        "submit"
+    );
+
+    formData.append(
+        "nama",
+        name
+    );
+
+    formData.append(
+        "kelas",
+        studentClass
+    );
+
+    formData.append(
+        "soal1",
+        q1
+    );
+
+    formData.append(
+        "soal2",
+        q2
+    );
+
+    formData.append(
+        "soal3",
+        q3
+    );
+
+    formData.append(
+        "status",
+        status
+    );
+
+    formData.append(
+        "nilai",
+        evalRes.score
+    );
+
+
+    try {
+
+        await fetch(
+            SCRIPT_URL,
+            {
                 method: 'POST',
                 body: formData
-            }).then(() => {
-                showFinalScreen(status, evalRes);
-            }).catch(err => {
-                showFinalScreen(status, evalRes);
-            });
-        }
+            }
+        );
 
-        function showFinalScreen(status, evalRes) {
-            let q1Status = evalRes.results.q1 ? '<span style="color: #27ae60; font-weight: bold;">BENAR (✓)</span>' : '<span style="color: #e74c3c; font-weight: bold;">SALAH (✗)</span>';
-            let q2Status = evalRes.results.q2 ? '<span style="color: #27ae60; font-weight: bold;">BENAR (✓)</span>' : '<span style="color: #e74c3c; font-weight: bold;">SALAH (✗)</span>';
-            let q3Status = evalRes.results.q3 ? '<span style="color: #27ae60; font-weight: bold;">BENAR (✓)</span>' : '<span style="color: #e74c3c; font-weight: bold;">SALAH (✗)</span>';
+    } catch (error) {
 
-            document.body.innerHTML = `
-                <div style="font-family: Arial, sans-serif; text-align: center; padding: 40px 20px; max-width: 600px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    <h1 style="color: #27ae60; margin-bottom: 5px;">Kuis Selesai!</h1>
-                    <p style="color: #7f8c8d; font-size: 14px;">Status: <strong>${status}</strong></p>
-                    
-                    <div style="background: #f8f9fa; border: 2px dashed #27ae60; border-radius: 10px; padding: 20px; margin: 25px 0;">
-                        <h3 style="margin: 0; color: #2c3e50;">NILAI AKHIR KAMU:</h3>
-                        <div style="font-size: 50px; font-weight: bold; color: #27ae60; margin: 10px 0;">${evalRes.score} / 100</div>
-                    </div>
+        console.error(
+            "Gagal mengirim data:",
+            error
+        );
 
-                    <h3 style="text-align: left; color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 8px;">Rekapan Hasil Per Soal:</h3>
-                    <ul style="text-align: left; line-height: 2; font-size: 16px; list-style-type: none; padding-left: 0;">
-                        <li style="border-bottom: 1px solid #eee; padding: 8px 0;"><strong>Soal 1 (Lampu):</strong> ${q1Status}</li>
-                        <li style="border-bottom: 1px solid #eee; padding: 8px 0;"><strong>Soal 2 (Jam Tugas):</strong> ${q2Status}</li>
-                        <li style="border-bottom: 1px solid #eee; padding: 8px 0;"><strong>Soal 3 (Jumlah Buku):</strong> ${q3Status}</li>
-                    </ul>
+    }
 
-                    <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
-                    <p style="color: #95a5a6; font-size: 13px;">Jawaban dan nilai telah tersimpan di rekapan Guru KKA.</p>
+
+    showFinalScreen(
+        status,
+        evalRes
+    );
+
+}
+
+
+/* =========================================================
+   TAMPILAN HASIL
+========================================================= */
+
+function showFinalScreen(status, evalRes) {
+
+    const q1Status =
+        evalRes.results.q1
+
+        ? '<span class="correct">BENAR ✓</span>'
+
+        : '<span class="wrong">SALAH ✗</span>';
+
+
+    const q2Status =
+        evalRes.results.q2
+
+        ? '<span class="correct">BENAR ✓</span>'
+
+        : '<span class="wrong">SALAH ✗</span>';
+
+
+    const q3Status =
+        evalRes.results.q3
+
+        ? '<span class="correct">BENAR ✓</span>'
+
+        : '<span class="wrong">SALAH ✗</span>';
+
+
+    document.body.innerHTML = `
+
+        <div
+            style="
+                font-family:Arial,sans-serif;
+                text-align:center;
+                padding:40px 20px;
+                max-width:600px;
+                margin:40px auto;
+                background:white;
+                border-radius:10px;
+                box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            "
+        >
+
+            <h1 style="color:#27ae60;">
+                Kuis Selesai!
+            </h1>
+
+            <p style="color:#7f8c8d;font-size:14px;">
+                Status:
+                <strong>${status}</strong>
+            </p>
+
+            <div
+                style="
+                    background:#f8f9fa;
+                    border:2px dashed #27ae60;
+                    border-radius:10px;
+                    padding:20px;
+                    margin:25px 0;
+                "
+            >
+
+                <h3>
+                    NILAI AKHIR KAMU
+                </h3>
+
+                <div
+                    style="
+                        font-size:50px;
+                        font-weight:bold;
+                        color:#27ae60;
+                        margin:10px 0;
+                    "
+                >
+                    ${evalRes.score} / 100
                 </div>
-            `;
+
+            </div>
+
+
+            <h3
+                style="
+                    text-align:left;
+                    color:#34495e;
+                    border-bottom:2px solid #ecf0f1;
+                    padding-bottom:8px;
+                "
+            >
+                Rekapan Hasil Per Soal
+            </h3>
+
+
+            <ul
+                style="
+                    text-align:left;
+                    line-height:2;
+                    font-size:16px;
+                    list-style:none;
+                    padding-left:0;
+                "
+            >
+
+                <li
+                    style="
+                        border-bottom:1px solid #eee;
+                        padding:8px 0;
+                    "
+                >
+                    <strong>Soal 1 (Lampu):</strong>
+                    ${q1Status}
+                </li>
+
+                <li
+                    style="
+                        border-bottom:1px solid #eee;
+                        padding:8px 0;
+                    "
+                >
+                    <strong>Soal 2 (Jam Tugas):</strong>
+                    ${q2Status}
+                </li>
+
+                <li
+                    style="
+                        border-bottom:1px solid #eee;
+                        padding:8px 0;
+                    "
+                >
+                    <strong>Soal 3 (Jumlah Buku):</strong>
+                    ${q3Status}
+                </li>
+
+            </ul>
+
+
+            <hr
+                style="
+                    margin:30px 0;
+                    border:none;
+                    border-top:1px solid #eee;
+                "
+            >
+
+
+            <p
+                style="
+                    color:#95a5a6;
+                    font-size:13px;
+                "
+            >
+                Jawaban dan nilai telah tersimpan
+                pada rekapan Guru KKA.
+            </p>
+
+        </div>
+    `;
+
+}
+
+
+/* =========================================================
+   CEGAH RELOAD / BACK SAAT KUIS
+========================================================= */
+
+window.addEventListener(
+    'beforeunload',
+    function(event) {
+
+        if (quizStarted) {
+
+            event.preventDefault();
+
+            event.returnValue = '';
+
         }
-    </script>
+
+    }
+);
+
+
+/* =========================================================
+   DETEKSI PINDAH TAB
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            document.hidden &&
+            quizStarted &&
+            !submitting
+        ) {
+
+            submitQuiz(
+                'TERKIRIM OTOMATIS (Siswa Pindah Tab/Aplikasi)'
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DETEKSI KELUAR FULLSCREEN
+========================================================= */
+
+document.addEventListener(
+    'fullscreenchange',
+    function() {
+
+        if (
+            !document.fullscreenElement &&
+            quizStarted &&
+            !submitting
+        ) {
+
+            submitQuiz(
+                'TERKIRIM OTOMATIS (Siswa Keluar Layar Penuh)'
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 </body>
 </html>
+```
