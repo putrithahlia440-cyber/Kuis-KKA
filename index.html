@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Kuis KKA - Logika IF-ELSE Python</title>
 
@@ -20,8 +14,8 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eef3f8;
   color: #1f2937;
 }
 
@@ -34,28 +28,45 @@ body {
 .card {
   background: white;
   border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  padding: 25px;
   margin-bottom: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
-.header {
+h1 {
   text-align: center;
+  margin-top: 0;
+  color: #1e3a5f;
 }
 
-.header h1 {
-  margin-bottom: 8px;
+h2 {
+  color: #1e3a5f;
 }
 
-.header p {
-  color: #6b7280;
+h3 {
+  margin-top: 0;
+  color: #334155;
+}
+
+.subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 25px;
+}
+
+.warning {
+  background: #fff7ed;
+  border-left: 5px solid #f59e0b;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 label {
   display: block;
-  margin-top: 15px;
-  margin-bottom: 7px;
   font-weight: bold;
+  margin-bottom: 7px;
 }
 
 input,
@@ -63,193 +74,235 @@ select,
 textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #cbd5e1;
   border-radius: 10px;
   font-size: 15px;
+  font-family: Consolas, monospace;
+}
+
+input,
+select {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 textarea {
-  min-height: 190px;
+  min-height: 230px;
   resize: vertical;
-  font-family: Consolas, monospace;
-  line-height: 1.5;
+  background: #f8fafc;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 18px;
 }
 
 button {
+  width: 100%;
+  padding: 13px 18px;
   border: none;
   border-radius: 10px;
-  padding: 13px 20px;
-  font-size: 15px;
+  background: #1e3a5f;
+  color: white;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.btn-primary {
-  width: 100%;
-  margin-top: 20px;
-  background: #2563eb;
-  color: white;
+button:hover {
+  opacity: 0.9;
 }
 
-.btn-primary:hover {
-  background: #1d4ed8;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  display: none;
+  line-height: 1.5;
+}
+
+.message.error {
+  display: block;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.message.success {
+  display: block;
+  background: #dcfce7;
+  color: #166534;
+}
+
+.question-number {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #075985;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.code-hint {
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.activity-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1e293b;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.activity-item {
+  flex: 1;
+  text-align: center;
+}
+
+.result-score {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  color: #1e3a5f;
+  margin: 20px 0;
+}
+
+.result-message {
+  text-align: center;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 15px;
+  line-height: 1.6;
+}
+
+.evaluation-card {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 15px;
+  border-left: 5px solid #64748b;
+}
+
+.evaluation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.evaluation-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.evaluation-score {
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.status.benar {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.sebagian {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.salah {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.component-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.component-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.component-list li:last-child {
+  border-bottom: none;
+}
+
+.detail-error {
+  background: #fff7ed;
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+  color: #9a3412;
+  line-height: 1.6;
+}
+
+.detail-error ul {
+  margin-bottom: 0;
+}
+
+.auto-note {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 15px;
+  line-height: 1.6;
 }
 
 .hidden {
   display: none !important;
 }
 
-.warning {
-  background: #fff7ed;
-  border-left: 5px solid #f97316;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 15px;
+.small-note {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-top: 8px;
 }
 
-.activity {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: #111827;
-  color: white;
-  padding: 12px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.question {
-  margin-top: 25px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
-  border-radius: 15px;
-  background: #fafafa;
-}
-
-.question h3 {
-  margin-top: 0;
-}
-
-.case {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border-left: 5px solid #2563eb;
-}
-
-/* ==================================================
-   HASIL
-================================================== */
-
-.result {
-  text-align: center;
-}
-
-.nilai {
-  font-size: 60px;
-  font-weight: bold;
-  margin: 20px 0;
-}
-
-/* ==================================================
-   EVALUASI
-================================================== */
-
-.evaluasi-container {
-  margin-top: 30px;
-  text-align: left;
-}
-
-.evaluasi-intro {
-  background: #eff6ff;
-  border-left: 5px solid #2563eb;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.evaluasi-box {
-  border-radius: 14px;
-  padding: 18px;
-  margin-bottom: 18px;
-  border: 1px solid #e5e7eb;
-}
-
-.evaluasi-benar {
-  background: #f0fdf4;
-  border-left: 6px solid #22c55e;
-}
-
-.evaluasi-salah {
-  background: #fff7ed;
-  border-left: 6px solid #f97316;
-}
-
-.evaluasi-box h3 {
-  margin-top: 0;
-}
-
-.evaluasi-box ul {
-  padding-left: 22px;
-}
-
-.evaluasi-box li {
-  margin-bottom: 8px;
-  line-height: 1.5;
-}
-
-.feedback-title {
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-.loading {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.97);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.loading-box {
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-  max-width: 400px;
-  width: 90%;
-}
-
-.status-message {
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 10px;
-  display: none;
-}
-
-.error {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.success {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.info {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-@media(max-width:600px) {
+@media (max-width: 600px) {
 
   .container {
-    width: 95%;
+    width: 94%;
     margin: 15px auto;
   }
 
@@ -257,515 +310,446 @@ button {
     padding: 18px;
   }
 
-  .nilai {
-    font-size: 48px;
+  .activity-bar {
+    font-size: 11px;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+
+  .result-score {
+    font-size: 42px;
   }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
-<!-- ==================================================
-     LOADING
-================================================== -->
-
-<div
-  id="loading"
-  class="loading hidden"
->
-
-  <div class="loading-box">
-
-    <h2>Mohon Tunggu</h2>
-
-    <p id="loadingText">
-      Sedang memeriksa data siswa...
-    </p>
-
-  </div>
-
-</div>
-
-
-<!-- ==================================================
-     AKTIVITAS
-================================================== -->
-
-<div
-  id="activityBar"
-  class="activity hidden"
->
-
-  Aktivitas:
-  Pindah Tab =
-  <span id="pindahTabText">0</span>
-
-  &nbsp; | &nbsp;
-
-  Keluar Fullscreen =
-  <span id="fullscreenText">0</span>
-
-</div>
-
-
 <div class="container">
 
 
-<!-- ==================================================
-     LOGIN
-================================================== -->
+  <!-- =================================================
+       HALAMAN LOGIN
+  ================================================= -->
 
-<div
-  id="loginPage"
-  class="card"
->
+  <div id="halamanLogin" class="card">
 
-  <div class="header">
+    <h1>💻 Kuis KKA</h1>
 
-    <h1>
-      Kuis KKA - Logika IF-ELSE Python
-    </h1>
-
-    <p>
-      Koding dan Kecerdasan Artifisial
-    </p>
-
-  </div>
+    <div class="subtitle">
+      Logika IF-ELSE Python
+    </div>
 
 
-  <div class="warning">
+    <div class="warning">
 
-    <strong>Perhatian!</strong>
+      ⚠️ <strong>Perhatian:</strong><br>
 
-    <ul>
+      Kuis hanya dapat dikerjakan satu kali untuk
+      setiap kombinasi nama dan kelas.
 
-      <li>
-        Kuis hanya dapat dikerjakan satu kali.
-      </li>
+      <br><br>
 
-      <li>
-        Pastikan nama dan kelas sesuai dengan daftar siswa.
-      </li>
-
-      <li>
-        Jika berpindah tab/halaman, jawaban akan langsung dikirim.
-      </li>
-
-      <li>
-        Jika keluar fullscreen/menekan ESC,
-        jawaban akan langsung dikirim.
-      </li>
-
-      <li>
-        Kerjakan secara mandiri.
-      </li>
-
-    </ul>
-
-  </div>
-
-
-  <label for="nama">
-    Nama Lengkap
-  </label>
-
-  <input
-    id="nama"
-    type="text"
-    placeholder="Masukkan nama lengkap"
-    autocomplete="off"
-  >
-
-
-  <label for="kelas">
-    Kelas
-  </label>
-
-  <select id="kelas">
-
-    <option value="">
-      -- Pilih Kelas --
-    </option>
-
-    <option value="X-A">X-A</option>
-    <option value="X-B">X-B</option>
-    <option value="X-C">X-C</option>
-    <option value="X-D">X-D</option>
-    <option value="X-E">X-E</option>
-    <option value="X-F">X-F</option>
-    <option value="X-G">X-G</option>
-    <option value="X-H">X-H</option>
-
-  </select>
-
-
-  <div
-    id="loginMessage"
-    class="status-message"
-  ></div>
-
-
-  <button
-    class="btn-primary"
-    onclick="mulaiKuis()"
-  >
-    Mulai Kuis
-  </button>
-
-</div>
-
-
-<!-- ==================================================
-     KUIS
-================================================== -->
-
-<div
-  id="quizPage"
-  class="hidden"
->
-
-  <div class="card">
-
-    <div class="header">
-
-      <h1>
-        Kuis IF-ELSE Python
-      </h1>
-
-      <p>
-        Tuliskan kode Python berdasarkan kasus yang diberikan.
-      </p>
+      Setelah kuis dimulai, jangan berpindah tab
+      atau keluar dari fullscreen karena jawaban
+      akan dikirim otomatis.
 
     </div>
 
 
-    <!-- ==================================================
-         SOAL 1
-    ================================================== -->
+    <div class="form-group">
 
-    <div class="question">
+      <label for="nama">
+        Nama Lengkap
+      </label>
 
-      <h3>
-        Soal 1 — Kondisi Lampu
-      </h3>
-
-      <div class="case">
-
-        <p>
-          Buatlah program Python yang meminta pengguna
-          memasukkan kondisi lampu, yaitu
-          <code>nyala</code> atau <code>mati</code>.
-        </p>
-
-        <p>
-          Jika kondisi lampu adalah
-          <strong>nyala</strong>, tampilkan:
-        </p>
-
-        <p>
-          <strong>Lampu sedang menyala</strong>
-        </p>
-
-        <p>
-          Jika kondisi lainnya, tampilkan:
-        </p>
-
-        <p>
-          <strong>Lampu sedang mati</strong>
-        </p>
-
-      </div>
-
-
-      <textarea
-        id="jawaban1"
-        placeholder="Tuliskan kode Python di sini..."
-        spellcheck="false"
-      ></textarea>
+      <input
+        type="text"
+        id="nama"
+        placeholder="Masukkan nama lengkap"
+        autocomplete="off"
+      >
 
     </div>
 
 
-    <!-- ==================================================
-         SOAL 2
-    ================================================== -->
+    <div class="form-group">
 
-    <div class="question">
+      <label for="kelas">
+        Kelas
+      </label>
 
-      <h3>
-        Soal 2 — Batas Waktu Pengumpulan
-      </h3>
+      <select id="kelas">
 
-      <div class="case">
+        <option value="">
+          -- Pilih Kelas --
+        </option>
 
-        <p>
-          Buatlah program Python yang meminta pengguna
-          memasukkan jam pengumpulan tugas.
-        </p>
+        <option value="X-A">X-A</option>
+        <option value="X-B">X-B</option>
+        <option value="X-C">X-C</option>
+        <option value="X-D">X-D</option>
+        <option value="X-E">X-E</option>
+        <option value="X-F">X-F</option>
+        <option value="X-G">X-G</option>
+        <option value="X-H">X-H</option>
 
-        <p>
-          Jika jam pengumpulan
-          <strong>kurang dari atau sama dengan 15</strong>,
-          tampilkan:
-        </p>
-
-        <p>
-          <strong>Tugas diterima</strong>
-        </p>
-
-        <p>
-          Jika lebih dari 15, tampilkan:
-        </p>
-
-        <p>
-          <strong>Tugas terlambat</strong>
-        </p>
-
-      </div>
-
-
-      <textarea
-        id="jawaban2"
-        placeholder="Tuliskan kode Python di sini..."
-        spellcheck="false"
-      ></textarea>
-
-    </div>
-
-
-    <!-- ==================================================
-         SOAL 3
-    ================================================== -->
-
-    <div class="question">
-
-      <h3>
-        Soal 3 — Jumlah Buku
-      </h3>
-
-      <div class="case">
-
-        <p>
-          Buatlah program Python yang meminta pengguna
-          memasukkan jumlah buku.
-        </p>
-
-        <p>
-          Jika jumlah buku
-          <strong>lebih dari atau sama dengan 3</strong>,
-          tampilkan:
-        </p>
-
-        <p>
-          <strong>Buku sudah cukup</strong>
-        </p>
-
-        <p>
-          Jika kurang dari 3, tampilkan:
-        </p>
-
-        <p>
-          <strong>Buku masih kurang</strong>
-        </p>
-
-      </div>
-
-
-      <textarea
-        id="jawaban3"
-        placeholder="Tuliskan kode Python di sini..."
-        spellcheck="false"
-      ></textarea>
+      </select>
 
     </div>
 
 
     <div
-      id="quizMessage"
-      class="status-message"
+      id="pesanLogin"
+      class="message"
     ></div>
 
 
     <button
-      class="btn-primary"
-      onclick="kirimJawaban(false)"
+      id="btnMulai"
+      onclick="mulaiKuis()"
     >
-      Kirim Jawaban
+      🚀 Mulai Kuis
     </button>
 
-  </div>
 
-</div>
+    <div class="small-note">
+      Pastikan nama dan kelas sudah benar sebelum memulai.
+    </div>
 
-
-<!-- ==================================================
-     HASIL
-================================================== -->
-
-<div
-  id="resultPage"
-  class="card result hidden"
->
-
-  <h1>
-    🎉 Kuis Selesai
-  </h1>
-
-  <p>
-    Jawaban Anda telah dikirim.
-  </p>
-
-
-  <div
-    id="nilai"
-    class="nilai"
-  >
-    0
   </div>
 
 
-  <p id="resultMessage"></p>
 
-
-  <!-- ==================================================
-       EVALUASI
-  ================================================== -->
+  <!-- =================================================
+       HALAMAN KUIS
+  ================================================= -->
 
   <div
-    id="evaluasiContainer"
-    class="evaluasi-container"
+    id="halamanKuis"
+    class="hidden"
   >
 
-    <div class="evaluasi-intro">
 
-      <strong>
-        🔎 Evaluasi Jawaban
-      </strong>
+    <div class="activity-bar">
 
-      <p>
-        Perhatikan bagian yang masih perlu diperbaiki.
-        Evaluasi membantu kamu mengetahui kesalahan
-        penulisan sintaks Python.
-      </p>
+      <div class="activity-item">
+        Tab: <strong id="tampilanTab">0</strong>
+      </div>
+
+      <div class="activity-item">
+        Fullscreen: <strong id="tampilanFullscreen">0</strong>
+      </div>
+
+      <div class="activity-item">
+        Status: <strong id="tampilanStatus">Mengerjakan</strong>
+      </div>
 
     </div>
 
 
-    <div id="evaluasiJawaban"></div>
+    <!-- SOAL 1 -->
+
+    <div class="card">
+
+      <div class="question-number">
+        SOAL 1
+      </div>
+
+      <h3>Kondisi Lampu</h3>
+
+      <div class="question-text">
+
+        Buat program Python yang meminta pengguna
+        memasukkan kondisi lampu berupa
+        <strong>"nyala"</strong> atau
+        <strong>"mati"</strong>.
+
+        <br><br>
+
+        Jika kondisi lampu adalah
+        <strong>"nyala"</strong>, tampilkan:
+
+        <strong>"Lampu sedang menyala"</strong>.
+
+        <br><br>
+
+        Jika bukan, tampilkan:
+
+        <strong>"Lampu sedang mati"</strong>.
+
+      </div>
+
+
+      <div class="code-hint">
+
+        Gunakan struktur:
+        <br>
+        input → if → else → print
+
+      </div>
+
+
+      <label for="jawaban1">
+        Jawaban Python:
+      </label>
+
+      <textarea
+        id="jawaban1"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="Tulis kode Python di sini..."
+      ></textarea>
+
+    </div>
+
+
+
+    <!-- SOAL 2 -->
+
+    <div class="card">
+
+      <div class="question-number">
+        SOAL 2
+      </div>
+
+      <h3>Batas Waktu Pengumpulan</h3>
+
+      <div class="question-text">
+
+        Buat program Python yang meminta pengguna
+        memasukkan jam pengumpulan tugas.
+
+        <br><br>
+
+        Jika jam pengumpulan
+        <strong>kurang dari atau sama dengan 15</strong>,
+        tampilkan:
+
+        <strong>"Tugas diterima"</strong>.
+
+        <br><br>
+
+        Jika lebih dari 15, tampilkan:
+
+        <strong>"Tugas terlambat"</strong>.
+
+      </div>
+
+
+      <div class="code-hint">
+
+        Perhatikan operator:
+        <br>
+        <strong>&lt;=</strong>
+
+      </div>
+
+
+      <label for="jawaban2">
+        Jawaban Python:
+      </label>
+
+      <textarea
+        id="jawaban2"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="Tulis kode Python di sini..."
+      ></textarea>
+
+    </div>
+
+
+
+    <!-- SOAL 3 -->
+
+    <div class="card">
+
+      <div class="question-number">
+        SOAL 3
+      </div>
+
+      <h3>Jumlah Buku</h3>
+
+      <div class="question-text">
+
+        Buat program Python yang meminta pengguna
+        memasukkan jumlah buku.
+
+        <br><br>
+
+        Jika jumlah buku
+        <strong>lebih dari atau sama dengan 3</strong>,
+        tampilkan:
+
+        <strong>"Buku sudah cukup"</strong>.
+
+        <br><br>
+
+        Jika kurang dari 3, tampilkan:
+
+        <strong>"Buku masih kurang"</strong>.
+
+      </div>
+
+
+      <div class="code-hint">
+
+        Perhatikan operator:
+        <br>
+        <strong>&gt;=</strong>
+
+      </div>
+
+
+      <label for="jawaban3">
+        Jawaban Python:
+      </label>
+
+      <textarea
+        id="jawaban3"
+        spellcheck="false"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="Tulis kode Python di sini..."
+      ></textarea>
+
+    </div>
+
+
+
+    <div
+      id="pesanKuis"
+      class="message"
+    ></div>
+
+
+    <div class="card">
+
+      <button
+        id="btnSubmit"
+        onclick="konfirmasiSubmitManual()"
+      >
+        📤 Kumpulkan Jawaban
+      </button>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- =================================================
+       HALAMAN HASIL
+  ================================================= -->
+
+  <div
+    id="halamanHasil"
+    class="hidden"
+  >
+
+    <div class="card">
+
+      <h1>🎉 Kuis Selesai</h1>
+
+      <div class="subtitle">
+        Hasil pengerjaan
+      </div>
+
+
+      <div
+        id="nilaiAkhir"
+        class="result-score"
+      >
+        0
+      </div>
+
+
+      <div
+        id="pesanHasil"
+        class="result-message"
+      ></div>
+
+
+      <div
+        id="catatanAuto"
+        class="auto-note hidden"
+      ></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>📋 Evaluasi Jawaban</h2>
+
+      <div id="containerEvaluasi"></div>
+
+    </div>
 
   </div>
 
 </div>
 
-
-</div>
 
 
 <script>
 
 
 /* =====================================================
-   URL GOOGLE APPS SCRIPT
-   VERSI TERBARU
+   URL APPS SCRIPT
 ===================================================== */
 
+/*
+  GANTI bagian ini dengan URL Web App TERBARU.
+
+  Contoh:
+
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/XXXXXXXX/exec";
+*/
+
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxx0IW9vQRi_DOqNDlRWKy3-pcK1CH04t0HE17pGikWeysyGwWr2eO_rUi_WNWuxKf1Rw/exec";
+  "https://script.google.com/macros/s/AKfycbzS4KVAX3Ip6XUjH12ZtKXD7zxxQlyXhU1TlbVDkfBKdzQVxbQ50u_FFBoZAAVjoliDAg/exec";
+
 
 
 /* =====================================================
-   VARIABEL
+   VARIABEL GLOBAL
 ===================================================== */
 
 let namaSiswa = "";
-
 let kelasSiswa = "";
 
 let jumlahPindahTab = 0;
-
 let jumlahKeluarFullscreen = 0;
 
-let sudahKirim = false;
+let sudahSubmit = false;
 
-let sedangMemproses = false;
+let alasanAutoSubmit = "";
+let catatanAktivitas = "";
 
-let sedangSubmit = false;
+let sedangKuis = false;
 
-let pernahMasukFullscreen = false;
+let escDitekan = false;
 
+let fullscreenSedangDiproses = false;
 
-/* =====================================================
-   LOADING
-===================================================== */
-
-function tampilkanLoading(teks) {
-
-  document
-    .getElementById("loadingText")
-    .textContent = teks;
-
-  document
-    .getElementById("loading")
-    .classList
-    .remove("hidden");
-
-}
-
-
-function sembunyikanLoading() {
-
-  document
-    .getElementById("loading")
-    .classList
-    .add("hidden");
-
-}
 
 
 /* =====================================================
-   PESAN
-===================================================== */
-
-function tampilkanPesan(
-  id,
-  pesan,
-  tipe
-) {
-
-  const el =
-    document.getElementById(id);
-
-  el.textContent =
-    pesan;
-
-  el.className =
-    "status-message " +
-    tipe;
-
-  el.style.display =
-    "block";
-
-}
-
-
-function sembunyikanPesan(id) {
-
-  document
-    .getElementById(id)
-    .style.display =
-    "none";
-
-}
-
-
-/* =====================================================
-   JSONP KE GOOGLE APPS SCRIPT
+   PANGGIL APPS SCRIPT JSONP
 ===================================================== */
 
 function panggilAppsScript(
@@ -779,9 +763,7 @@ function panggilAppsScript(
     "callback_" +
     Date.now() +
     "_" +
-    Math.floor(
-      Math.random() * 100000
-    );
+    Math.floor(Math.random() * 100000);
 
 
   const script =
@@ -792,36 +774,30 @@ function panggilAppsScript(
 
 
   const timeout =
-    setTimeout(
-      function() {
+    setTimeout(function() {
 
-        if (selesai) {
-          return;
-        }
+      if (selesai) return;
 
-        selesai = true;
+      selesai = true;
 
-        cleanup();
+      cleanup();
 
-        if (gagal) {
 
-          gagal(
-            "Waktu koneksi ke Google Apps Script habis. Periksa deployment Web App."
-          );
+      if (gagal) {
 
-        }
+        gagal(
+          "Waktu koneksi ke Google Apps Script habis. Periksa deployment Web App."
+        );
 
-      },
-      15000
-    );
+      }
+
+    }, 15000);
 
 
   window[callbackName] =
     function(data) {
 
-      if (selesai) {
-        return;
-      }
+      if (selesai) return;
 
       selesai = true;
 
@@ -829,8 +805,11 @@ function panggilAppsScript(
 
       cleanup();
 
+
       if (success) {
+
         success(data);
+
       }
 
     };
@@ -840,14 +819,11 @@ function panggilAppsScript(
 
     if (script.parentNode) {
 
-      script.parentNode
-        .removeChild(script);
+      script.parentNode.removeChild(script);
 
     }
 
-    delete window[
-      callbackName
-    ];
+    delete window[callbackName];
 
   }
 
@@ -855,15 +831,14 @@ function panggilAppsScript(
   script.onerror =
     function() {
 
-      if (selesai) {
-        return;
-      }
+      if (selesai) return;
 
       selesai = true;
 
       clearTimeout(timeout);
 
       cleanup();
+
 
       if (gagal) {
 
@@ -892,18 +867,15 @@ function panggilAppsScript(
   );
 
 
-  Object.keys(
-    parameter || {}
-  ).forEach(
-    function(key) {
+  Object.keys(parameter || {})
+    .forEach(function(key) {
 
       query.append(
         key,
         parameter[key]
       );
 
-    }
-  );
+    });
 
 
   script.src =
@@ -912,11 +884,36 @@ function panggilAppsScript(
     query.toString();
 
 
-  document
-    .body
-    .appendChild(script);
+  document.body.appendChild(script);
 
 }
+
+
+
+/* =====================================================
+   PESAN
+===================================================== */
+
+function tampilkanPesan(
+  id,
+  teks,
+  tipe
+) {
+
+  const elemen =
+    document.getElementById(id);
+
+
+  elemen.textContent =
+    teks;
+
+
+  elemen.className =
+    "message " +
+    tipe;
+
+}
+
 
 
 /* =====================================================
@@ -925,29 +922,24 @@ function panggilAppsScript(
 
 function mulaiKuis() {
 
-  sembunyikanPesan(
-    "loginMessage"
-  );
-
-
-  namaSiswa =
+  const nama =
     document
       .getElementById("nama")
       .value
       .trim();
 
 
-  kelasSiswa =
+  const kelas =
     document
       .getElementById("kelas")
       .value;
 
 
-  if (!namaSiswa) {
+  if (!nama) {
 
     tampilkanPesan(
-      "loginMessage",
-      "Nama lengkap wajib diisi.",
+      "pesanLogin",
+      "Nama wajib diisi.",
       "error"
     );
 
@@ -956,10 +948,10 @@ function mulaiKuis() {
   }
 
 
-  if (!kelasSiswa) {
+  if (!kelas) {
 
     tampilkanPesan(
-      "loginMessage",
+      "pesanLogin",
       "Silakan pilih kelas.",
       "error"
     );
@@ -969,9 +961,14 @@ function mulaiKuis() {
   }
 
 
-  tampilkanLoading(
-    "Sedang memeriksa data siswa..."
-  );
+  const tombol =
+    document.getElementById("btnMulai");
+
+
+  tombol.disabled = true;
+
+  tombol.textContent =
+    "⏳ Memeriksa data...";
 
 
   panggilAppsScript(
@@ -979,35 +976,26 @@ function mulaiKuis() {
     "cekSiswa",
 
     {
-      nama:
-        namaSiswa,
-
-      kelas:
-        kelasSiswa
+      nama: nama,
+      kelas: kelas
     },
 
+    function(data) {
 
-    function(hasil) {
+      tombol.disabled = false;
 
-      sembunyikanLoading();
+      tombol.textContent =
+        "🚀 Mulai Kuis";
 
 
-      if (
-        !hasil ||
-        !hasil.berhasil
-      ) {
+      if (!data || !data.sukses) {
 
         tampilkanPesan(
-
-          "loginMessage",
-
-          hasil &&
-          hasil.pesan
-            ? hasil.pesan
-            : "Data siswa tidak dapat diperiksa.",
-
+          "pesanLogin",
+          data && data.pesan
+            ? data.pesan
+            : "Tidak dapat memulai kuis.",
           "error"
-
         );
 
         return;
@@ -1015,36 +1003,43 @@ function mulaiKuis() {
       }
 
 
-      document
-        .getElementById("loginPage")
-        .classList
-        .add("hidden");
+      namaSiswa = nama;
+
+      kelasSiswa = kelas;
+
+      sedangKuis = true;
 
 
       document
-        .getElementById("quizPage")
-        .classList
-        .remove("hidden");
+        .getElementById("halamanLogin")
+        .classList.add("hidden");
 
 
       document
-        .getElementById("activityBar")
-        .classList
-        .remove("hidden");
+        .getElementById("halamanKuis")
+        .classList.remove("hidden");
+
+
+      document
+        .getElementById("tampilanStatus")
+        .textContent =
+        "Mengerjakan";
 
 
       masukFullscreen();
 
     },
 
-
     function(error) {
 
-      sembunyikanLoading();
+      tombol.disabled = false;
+
+      tombol.textContent =
+        "🚀 Mulai Kuis";
 
 
       tampilkanPesan(
-        "loginMessage",
+        "pesanLogin",
         error,
         "error"
       );
@@ -1056,37 +1051,89 @@ function mulaiKuis() {
 }
 
 
+
 /* =====================================================
    FULLSCREEN
 ===================================================== */
 
 function masukFullscreen() {
 
-  const element =
+  const elem =
     document.documentElement;
 
 
   if (
-    element.requestFullscreen
+    !document.fullscreenElement &&
+    elem.requestFullscreen
   ) {
 
-    element
+    elem
       .requestFullscreen()
-      .then(
-        function() {
+      .catch(function() {
 
-          pernahMasukFullscreen =
-            true;
+        /*
+          Browser dapat menolak fullscreen.
+          Kuis tetap berjalan.
+        */
 
-        }
-      )
-      .catch(
-        function() {}
-      );
+      });
 
   }
 
 }
+
+
+
+/* =====================================================
+   DETEKSI TOMBOL ESC
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(e) {
+
+    if (!sedangKuis) {
+      return;
+    }
+
+
+    if (e.key === "Escape") {
+
+      escDitekan = true;
+
+
+      /*
+        Jika sedang fullscreen,
+        ESC langsung dianggap sebagai
+        alasan auto submit.
+      */
+
+      if (document.fullscreenElement) {
+
+        e.preventDefault();
+
+        jumlahKeluarFullscreen++;
+
+        perbaruiTampilanAktivitas();
+
+
+        alasanAutoSubmit =
+          "OTOMATIS - ESC";
+
+
+        catatanAktivitas =
+          "Siswa menekan ESC untuk keluar dari fullscreen. Jawaban dikirim otomatis.";
+
+
+        autoSubmit();
+
+      }
+
+    }
+
+  }
+);
+
 
 
 /* =====================================================
@@ -1097,47 +1144,51 @@ document.addEventListener(
   "fullscreenchange",
   function() {
 
-    if (
-      document.fullscreenElement
-    ) {
-
-      pernahMasukFullscreen =
-        true;
-
+    if (!sedangKuis) {
       return;
-
     }
 
 
-    if (
+    if (!document.fullscreenElement) {
 
-      pernahMasukFullscreen &&
+      /*
+        Jika submit sudah berjalan,
+        jangan kirim dua kali.
+      */
 
-      !document.fullscreenElement &&
+      if (sudahSubmit) {
+        return;
+      }
 
-      !sudahKirim &&
 
-      !sedangSubmit &&
+      /*
+        Jika ESC sudah menyebabkan submit,
+        jangan lakukan submit kedua.
+      */
 
-      !sedangMemproses &&
+      if (escDitekan) {
 
-      !document
-        .getElementById("quizPage")
-        .classList
-        .contains("hidden")
+        escDitekan = false;
 
-    ) {
+        return;
+
+      }
+
 
       jumlahKeluarFullscreen++;
 
-
-      document
-        .getElementById("fullscreenText")
-        .textContent =
-        jumlahKeluarFullscreen;
+      perbaruiTampilanAktivitas();
 
 
-      kirimJawaban(true);
+      alasanAutoSubmit =
+        "OTOMATIS - Keluar fullscreen";
+
+
+      catatanAktivitas =
+        "Siswa keluar dari fullscreen. Jawaban dikirim otomatis.";
+
+
+      autoSubmit();
 
     }
 
@@ -1145,41 +1196,41 @@ document.addEventListener(
 );
 
 
+
 /* =====================================================
-   DETEKSI PINDAH TAB / HALAMAN
+   DETEKSI PINDAH TAB
 ===================================================== */
 
 document.addEventListener(
   "visibilitychange",
   function() {
 
-    if (
+    if (!sedangKuis) {
+      return;
+    }
 
-      document.hidden &&
 
-      !sudahKirim &&
+    if (document.hidden) {
 
-      !sedangSubmit &&
+      if (sudahSubmit) {
+        return;
+      }
 
-      !sedangMemproses &&
-
-      !document
-        .getElementById("quizPage")
-        .classList
-        .contains("hidden")
-
-    ) {
 
       jumlahPindahTab++;
 
-
-      document
-        .getElementById("pindahTabText")
-        .textContent =
-        jumlahPindahTab;
+      perbaruiTampilanAktivitas();
 
 
-      kirimJawaban(true);
+      alasanAutoSubmit =
+        "OTOMATIS - Berpindah tab";
+
+
+      catatanAktivitas =
+        "Siswa berpindah tab/halaman. Jawaban dikirim otomatis.";
+
+
+      autoSubmit();
 
     }
 
@@ -1187,48 +1238,55 @@ document.addEventListener(
 );
 
 
+
 /* =====================================================
-   BLOK COPY / CUT / PASTE
+   UPDATE TAMPILAN AKTIVITAS
 ===================================================== */
 
-document.addEventListener(
-  "copy",
-  function(event) {
-    event.preventDefault();
-  }
-);
+function perbaruiTampilanAktivitas() {
+
+  document
+    .getElementById("tampilanTab")
+    .textContent =
+    jumlahPindahTab;
 
 
-document.addEventListener(
-  "cut",
-  function(event) {
-    event.preventDefault();
-  }
-);
+  document
+    .getElementById("tampilanFullscreen")
+    .textContent =
+    jumlahKeluarFullscreen;
 
+}
 
-document.addEventListener(
-  "paste",
-  function(event) {
-    event.preventDefault();
-  }
-);
-
-
-document.addEventListener(
-  "contextmenu",
-  function(event) {
-    event.preventDefault();
-  }
-);
 
 
 /* =====================================================
-   CEK KELENGKAPAN
-   HANYA UNTUK SUBMIT MANUAL
+   AUTO SUBMIT
 ===================================================== */
 
-function cekKelengkapanJawaban() {
+function autoSubmit() {
+
+  if (sudahSubmit) {
+    return;
+  }
+
+
+  kirimJawaban(true);
+
+}
+
+
+
+/* =====================================================
+   KONFIRMASI SUBMIT MANUAL
+===================================================== */
+
+function konfirmasiSubmitManual() {
+
+  if (sudahSubmit) {
+    return;
+  }
+
 
   const jawaban1 =
     document
@@ -1251,71 +1309,381 @@ function cekKelengkapanJawaban() {
       .trim();
 
 
-  if (!jawaban1) {
+  /*
+    MANUAL:
+    semua jawaban wajib diisi.
+  */
+
+  if (
+    !jawaban1 ||
+    !jawaban2 ||
+    !jawaban3
+  ) {
 
     tampilkanPesan(
-      "quizMessage",
-      "Soal 1 wajib diisi.",
+      "pesanKuis",
+      "Semua soal harus diisi sebelum menekan Kumpulkan Jawaban.",
       "error"
     );
 
-    return false;
+    return;
 
   }
 
 
-  if (!jawaban2) {
-
-    tampilkanPesan(
-      "quizMessage",
-      "Soal 2 wajib diisi.",
-      "error"
+  const yakin =
+    confirm(
+      "Apakah Anda yakin ingin mengumpulkan jawaban?\n\nSetelah dikirim, jawaban tidak dapat dikerjakan kembali."
     );
 
-    return false;
 
+  if (!yakin) {
+    return;
   }
 
 
-  if (!jawaban3) {
+  alasanAutoSubmit = "";
 
-    tampilkanPesan(
-      "quizMessage",
-      "Soal 3 wajib diisi.",
-      "error"
-    );
-
-    return false;
-
-  }
+  catatanAktivitas = "";
 
 
-  return true;
+  kirimJawaban(false);
 
 }
+
 
 
 /* =====================================================
-   JUDUL EVALUASI SESUAI NOMOR SOAL
+   KIRIM JAWABAN
 ===================================================== */
 
-function getJudulSoal(nomor) {
+function kirimJawaban(otomatis) {
 
-  if (nomor == 1) {
-    return "Kondisi Lampu";
+  if (sudahSubmit) {
+    return;
   }
 
-  if (nomor == 2) {
-    return "Batas Waktu Pengumpulan";
+
+  sudahSubmit = true;
+
+  sedangKuis = false;
+
+
+  const jawaban1 =
+    document
+      .getElementById("jawaban1")
+      .value;
+
+
+  const jawaban2 =
+    document
+      .getElementById("jawaban2")
+      .value;
+
+
+  const jawaban3 =
+    document
+      .getElementById("jawaban3")
+      .value;
+
+
+  /*
+    Status pengerjaan
+  */
+
+  let statusPengerjaan;
+
+
+  if (otomatis) {
+
+    statusPengerjaan =
+      alasanAutoSubmit ||
+      "OTOMATIS - Sistem";
+
+  } else {
+
+    statusPengerjaan =
+      "SELESAI";
+
   }
 
-  if (nomor == 3) {
-    return "Jumlah Buku";
+
+  /*
+    Jika auto submit,
+    catatan harus dikirim.
+  */
+
+  let catatan;
+
+  if (otomatis) {
+
+    catatan =
+      catatanAktivitas ||
+      "Jawaban dikirim otomatis oleh sistem.";
+
+  } else {
+
+    catatan = "";
+
   }
 
-  return "Soal " + nomor;
+
+  const parameter = {
+
+    nama:
+      namaSiswa,
+
+    kelas:
+      kelasSiswa,
+
+    jawaban1:
+      jawaban1,
+
+    jawaban2:
+      jawaban2,
+
+    jawaban3:
+      jawaban3,
+
+    statusPengerjaan:
+      statusPengerjaan,
+
+    statusPengiriman:
+      otomatis
+        ? "OTOMATIS"
+        : "MANUAL",
+
+    jumlahPindahTab:
+      jumlahPindahTab,
+
+    jumlahKeluarFullscreen:
+      jumlahKeluarFullscreen,
+
+    catatanAktivitas:
+      catatan
+
+  };
+
+
+  document
+    .getElementById("tampilanStatus")
+    .textContent =
+    "Mengirim...";
+
+
+  /*
+    Tombol dibuat disabled.
+  */
+
+  const tombol =
+    document.getElementById("btnSubmit");
+
+
+  if (tombol) {
+
+    tombol.disabled = true;
+
+    tombol.textContent =
+      "⏳ Mengirim jawaban...";
+
+  }
+
+
+  panggilAppsScript(
+
+    "submitQuiz",
+
+    parameter,
+
+    function(data) {
+
+      if (!data || !data.sukses) {
+
+        /*
+          Jika server mengatakan sudah submit,
+          tetap tampilkan pesan.
+        */
+
+        document
+          .getElementById("halamanKuis")
+          .classList.add("hidden");
+
+
+        document
+          .getElementById("halamanHasil")
+          .classList.remove("hidden");
+
+
+        document
+          .getElementById("nilaiAkhir")
+          .textContent =
+          "--";
+
+
+        document
+          .getElementById("pesanHasil")
+          .textContent =
+          data && data.pesan
+            ? data.pesan
+            : "Jawaban tidak dapat diproses.";
+
+
+        return;
+
+      }
+
+
+      tampilkanHasil(
+        data,
+        otomatis
+      );
+
+    },
+
+    function(error) {
+
+      /*
+        Jika gagal karena koneksi,
+        beri tahu siswa.
+      */
+
+      document
+        .getElementById("halamanKuis")
+        .classList.remove("hidden");
+
+
+      sedangKuis = true;
+
+      sudahSubmit = false;
+
+
+      tampilkanPesan(
+        "pesanKuis",
+        "Jawaban belum berhasil dikirim. " + error,
+        "error"
+      );
+
+
+      const tombol =
+        document.getElementById("btnSubmit");
+
+
+      if (tombol) {
+
+        tombol.disabled = false;
+
+        tombol.textContent =
+          "📤 Kumpulkan Jawaban";
+
+      }
+
+    }
+
+  );
 
 }
+
+
+
+/* =====================================================
+   TAMPILKAN HASIL
+===================================================== */
+
+function tampilkanHasil(
+  data,
+  otomatis
+) {
+
+  document
+    .getElementById("halamanKuis")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("halamanHasil")
+    .classList.remove("hidden");
+
+
+  /*
+    Nilai akhir
+  */
+
+  const nilai =
+    Number(data.nilai || 0);
+
+
+  document
+    .getElementById("nilaiAkhir")
+    .textContent =
+    nilai.toFixed(2);
+
+
+  /*
+    Pesan hasil
+  */
+
+  let pesan =
+    "Jawaban Anda telah dinilai berdasarkan syntax, input, struktur IF-ELSE, kondisi/logika, dan output.";
+
+
+  document
+    .getElementById("pesanHasil")
+    .textContent =
+    pesan;
+
+
+  /*
+    Catatan auto submit
+  */
+
+  const catatanAuto =
+    document.getElementById("catatanAuto");
+
+
+  if (otomatis) {
+
+    catatanAuto.classList.remove(
+      "hidden"
+    );
+
+
+    catatanAuto.textContent =
+      data.catatanAktivitas ||
+      catatanAktivitas ||
+      "Jawaban dikirim otomatis oleh sistem.";
+
+  } else {
+
+    catatanAuto.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  /*
+    Evaluasi
+  */
+
+  tampilkanEvaluasi(
+    data.evaluasi || []
+  );
+
+
+  /*
+    Keluar fullscreen setelah selesai.
+  */
+
+  if (document.fullscreenElement) {
+
+    document
+      .exitFullscreen()
+      .catch(function() {});
+
+  }
+
+}
+
 
 
 /* =====================================================
@@ -1328,7 +1696,7 @@ function tampilkanEvaluasi(
 
   const container =
     document.getElementById(
-      "evaluasiJawaban"
+      "containerEvaluasi"
     );
 
 
@@ -1336,26 +1704,12 @@ function tampilkanEvaluasi(
 
 
   if (
-    !Array.isArray(evaluasi)
+    !evaluasi ||
+    evaluasi.length === 0
   ) {
 
-    container.innerHTML = `
-
-      <div class="evaluasi-box evaluasi-salah">
-
-        <h3>
-          ⚠️ Evaluasi Belum Dapat Ditampilkan
-        </h3>
-
-        <p>
-          Nilai sudah berhasil disimpan,
-          tetapi data evaluasi dari server
-          belum diterima oleh halaman.
-        </p>
-
-      </div>
-
-    `;
+    container.innerHTML =
+      "<p>Evaluasi tidak tersedia.</p>";
 
     return;
 
@@ -1365,499 +1719,307 @@ function tampilkanEvaluasi(
   evaluasi.forEach(
     function(item) {
 
-      const kotak =
+
+      let kelasStatus =
+        "salah";
+
+
+      if (
+        item.status === "Benar"
+      ) {
+
+        kelasStatus =
+          "benar";
+
+      } else if (
+        item.status === "Sebagian benar"
+      ) {
+
+        kelasStatus =
+          "sebagian";
+
+      }
+
+
+      const card =
         document.createElement(
           "div"
         );
 
 
-      kotak.className =
-        item.benar
-          ? "evaluasi-box evaluasi-benar"
-          : "evaluasi-box evaluasi-salah";
+      card.className =
+        "evaluation-card";
 
 
-      const judulSoal =
-        getJudulSoal(item.soal);
+      /*
+        HEADER
+      */
 
-
-      /* =================================================
-         JAWABAN BENAR
-      ================================================= */
-
-      if (item.benar) {
-
-        kotak.innerHTML = `
-
-          <h3>
-            Soal ${escapeHTML(item.soal)}
-            — ${escapeHTML(judulSoal)}
-            — ✅ Benar
-          </h3>
-
-          <p>
-            Jawaban kamu sudah sesuai
-            dengan struktur, sintaks,
-            dan logika Python yang diperlukan
-            untuk soal ini.
-          </p>
-
-        `;
-
-      }
-
-
-      /* =================================================
-         JAWABAN SALAH
-      ================================================= */
-
-      else {
-
-        let daftarKesalahan = "";
-
-
-        if (
-
-          Array.isArray(item.kesalahan) &&
-
-          item.kesalahan.length > 0
-
-        ) {
-
-          item.kesalahan.forEach(
-            function(error) {
-
-              daftarKesalahan += `
-
-                <li>
-                  ${escapeHTML(error)}
-                </li>
-
-              `;
-
-            }
-          );
-
-        }
-
-        else {
-
-          daftarKesalahan = `
-
-            <li>
-              Periksa kembali penulisan
-              sintaks dan struktur kode
-              pada soal ini.
-            </li>
-
-          `;
-
-        }
-
-
-        let fokus = "";
-
-
-        if (item.soal == 1) {
-
-          fokus =
-            "input kondisi lampu, operator ==, if-else, tanda petik, dan konsistensi nama variabel.";
-
-        }
-
-        else if (item.soal == 2) {
-
-          fokus =
-            "input jam menggunakan int(), operator <= 15, if-else, dan konsistensi nama variabel.";
-
-        }
-
-        else if (item.soal == 3) {
-
-          fokus =
-            "input jumlah buku menggunakan int(), operator >= 3, if-else, dan konsistensi nama variabel.";
-
-        }
-
-
-        kotak.innerHTML = `
-
-          <h3>
-            Soal ${escapeHTML(item.soal)}
-            — ${escapeHTML(judulSoal)}
-            — ❌ Perlu Diperbaiki
-          </h3>
-
-          <p class="feedback-title">
-            🔎 Kesalahan yang terdeteksi:
-          </p>
-
-          <ul>
-            ${daftarKesalahan}
-          </ul>
-
-          <p>
-
-            💡 Fokus perbaikan:
-
-            <strong>
-              ${escapeHTML(fokus)}
-            </strong>
-
-          </p>
-
-        `;
-
-      }
-
-
-      container.appendChild(
-        kotak
-      );
-
-    }
-  );
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(teks) {
-
-  return String(teks || "")
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
-}
-
-
-/* =====================================================
-   KIRIM JAWABAN
-===================================================== */
-
-function kirimJawaban(
-  otomatis
-) {
-
-  if (
-    sudahKirim ||
-    sedangMemproses
-  ) {
-
-    return;
-
-  }
-
-
-  sembunyikanPesan(
-    "quizMessage"
-  );
-
-
-  /* =================================================
-     SUBMIT MANUAL
-     Semua soal wajib diisi.
-  ================================================= */
-
-  if (!otomatis) {
-
-    if (
-      !cekKelengkapanJawaban()
-    ) {
-
-      return;
-
-    }
-
-
-    const yakin =
-      confirm(
-
-        "Apakah Anda yakin ingin mengirim jawaban?\n\n" +
-
-        "Jawaban hanya dapat dikirim satu kali."
-
-      );
-
-
-    if (!yakin) {
-      return;
-    }
-
-  }
-
-
-  /* =================================================
-     MULAI PROSES SUBMIT
-  ================================================= */
-
-  sedangMemproses = true;
-
-  sedangSubmit = true;
-
-
-  tampilkanLoading(
-
-    otomatis
-
-      ? "Aktivitas terdeteksi. Jawaban sedang dikirim..."
-
-      : "Sedang menyimpan jawaban..."
-
-  );
-
-
-  const jawaban1 =
-    document
-      .getElementById("jawaban1")
-      .value;
-
-
-  const jawaban2 =
-    document
-      .getElementById("jawaban2")
-      .value;
-
-
-  const jawaban3 =
-    document
-      .getElementById("jawaban3")
-      .value;
-
-
-  /* =================================================
-     KIRIM KE APPS SCRIPT
-  ================================================= */
-
-  panggilAppsScript(
-
-    "submitQuiz",
-
-    {
-
-      nama:
-        namaSiswa,
-
-      kelas:
-        kelasSiswa,
-
-      jawaban1:
-        jawaban1,
-
-      jawaban2:
-        jawaban2,
-
-      jawaban3:
-        jawaban3,
-
-      pindahTab:
-        jumlahPindahTab,
-
-      keluarFullscreen:
-        jumlahKeluarFullscreen
-
-    },
-
-
-    /* =================================================
-       BERHASIL
-    ================================================= */
-
-    function(hasil) {
-
-      sedangMemproses =
-        false;
-
-
-      sembunyikanLoading();
-
-
-      if (
-
-        !hasil ||
-
-        !hasil.berhasil
-
-      ) {
-
-        sedangSubmit =
-          false;
-
-
-        tampilkanPesan(
-
-          "quizMessage",
-
-          hasil &&
-          hasil.pesan
-
-            ? hasil.pesan
-
-            : "Jawaban tidak berhasil dikirim.",
-
-          "error"
-
+      const header =
+        document.createElement(
+          "div"
         );
 
 
-        return;
+      header.className =
+        "evaluation-header";
+
+
+      const title =
+        document.createElement(
+          "div"
+        );
+
+
+      title.className =
+        "evaluation-title";
+
+
+      title.textContent =
+        "Soal " +
+        item.nomor +
+        " — " +
+        item.soal;
+
+
+      const score =
+        document.createElement(
+          "div"
+        );
+
+
+      score.className =
+        "evaluation-score";
+
+
+      score.textContent =
+        Number(item.nilai || 0)
+          .toFixed(2) +
+        " / 33,33";
+
+
+      /*
+        Soal 3 maksimal 33,34
+      */
+
+      if (item.nomor === 3) {
+
+        score.textContent =
+          Number(item.nilai || 0)
+            .toFixed(2) +
+          " / 33,34";
 
       }
 
 
-      /* -----------------------------------------------
-         TANDAI SUDAH DIKIRIM
-      ----------------------------------------------- */
+      header.appendChild(title);
 
-      sudahKirim = true;
+      header.appendChild(score);
 
 
-      /* -----------------------------------------------
-         SEMBUNYIKAN AKTIVITAS
-      ----------------------------------------------- */
-
-      document
-        .getElementById("activityBar")
-        .classList
-        .add("hidden");
+      card.appendChild(header);
 
 
-      /* -----------------------------------------------
-         SEMBUNYIKAN KUIS
-      ----------------------------------------------- */
+      /*
+        STATUS
+      */
 
-      document
-        .getElementById("quizPage")
-        .classList
-        .add("hidden");
-
-
-      /* -----------------------------------------------
-         TAMPILKAN HASIL
-      ----------------------------------------------- */
-
-      document
-        .getElementById("resultPage")
-        .classList
-        .remove("hidden");
+      const status =
+        document.createElement(
+          "div"
+        );
 
 
-      /* -----------------------------------------------
-         NILAI
-      ----------------------------------------------- */
-
-      document
-        .getElementById("nilai")
-        .textContent =
-        hasil.nilai;
+      status.className =
+        "status " +
+        kelasStatus;
 
 
-      /* -----------------------------------------------
-         PESAN
-      ----------------------------------------------- */
-
-      document
-        .getElementById("resultMessage")
-        .textContent =
-        hasil.pesan;
+      status.textContent =
+        item.status;
 
 
-      /* -----------------------------------------------
-         EVALUASI
-      ----------------------------------------------- */
-
-      tampilkanEvaluasi(
-        hasil.evaluasi
-      );
+      card.appendChild(status);
 
 
-      /* -----------------------------------------------
-         KELUAR FULLSCREEN
-      ----------------------------------------------- */
+      /*
+        KOMPONEN
+      */
+
+      const list =
+        document.createElement(
+          "ul"
+        );
+
+
+      list.className =
+        "component-list";
+
+
+      (item.komponen || [])
+        .forEach(
+          function(komponen) {
+
+            const li =
+              document.createElement(
+                "li"
+              );
+
+
+            li.textContent =
+              (
+                komponen.benar
+                  ? "✅ "
+                  : "❌ "
+              ) +
+              komponen.nama;
+
+
+            list.appendChild(li);
+
+          }
+        );
+
+
+      card.appendChild(list);
+
+
+      /*
+        DETAIL KESALAHAN
+      */
 
       if (
-
-        document.fullscreenElement &&
-
-        document.exitFullscreen
-
+        item.detail &&
+        item.detail.length > 0
       ) {
 
-        document
-          .exitFullscreen()
-          .catch(
-            function() {}
+        const detail =
+          document.createElement(
+            "div"
           );
+
+
+        detail.className =
+          "detail-error";
+
+
+        const judul =
+          document.createElement(
+            "strong"
+          );
+
+
+        judul.textContent =
+          "💡 Perlu diperbaiki:";
+
+
+        detail.appendChild(
+          judul
+        );
+
+
+        const ul =
+          document.createElement(
+            "ul"
+          );
+
+
+        item.detail.forEach(
+          function(teks) {
+
+            const li =
+              document.createElement(
+                "li"
+              );
+
+
+            li.textContent =
+              teks;
+
+
+            ul.appendChild(li);
+
+          }
+        );
+
+
+        detail.appendChild(ul);
+
+
+        card.appendChild(detail);
 
       }
 
 
-      sedangSubmit =
-        false;
-
-    },
-
-
-    /* =================================================
-       GAGAL
-    ================================================= */
-
-    function(error) {
-
-      sedangMemproses =
-        false;
-
-      sedangSubmit =
-        false;
-
-      sembunyikanLoading();
-
-
-      tampilkanPesan(
-
-        "quizMessage",
-
-        error,
-
-        "error"
-
-      );
+      container.appendChild(card);
 
     }
-
   );
 
 }
 
+
+
+/* =====================================================
+   BLOK COPY / CUT / PASTE / CONTEXT MENU
+===================================================== */
+
+document.addEventListener(
+  "copy",
+  function(e) {
+
+    if (sedangKuis) {
+
+      e.preventDefault();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "cut",
+  function(e) {
+
+    if (sedangKuis) {
+
+      e.preventDefault();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "paste",
+  function(e) {
+
+    if (sedangKuis) {
+
+      e.preventDefault();
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "contextmenu",
+  function(e) {
+
+    if (sedangKuis) {
+
+      e.preventDefault();
+
+    }
+
+  }
+);
+
 </script>
 
-
 </body>
-
 </html>
