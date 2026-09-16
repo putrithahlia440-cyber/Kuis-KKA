@@ -623,7 +623,9 @@ button {
   </div>
 
 
-  <!-- SOAL 1 -->
+  <!-- ==================================================
+       SOAL 1
+  ================================================== -->
 
   <div class="question">
 
@@ -658,9 +660,9 @@ button {
       </p>
 
       <p>
-        Nama variabel boleh menggunakan nama sederhana
-        seperti <code>lampu</code> atau nama gabungan
-        seperti <code>periksa_lampu</code>.
+        Nama variabel boleh ditentukan sendiri,
+        misalnya <code>lampu</code> atau
+        <code>periksa_lampu</code>.
       </p>
 
     </div>
@@ -676,7 +678,9 @@ button {
 
 
 
-  <!-- SOAL 2 -->
+  <!-- ==================================================
+       SOAL 2
+  ================================================== -->
 
   <div class="question">
 
@@ -729,7 +733,9 @@ button {
 
 
 
-  <!-- SOAL 3 -->
+  <!-- ==================================================
+       SOAL 3
+  ================================================== -->
 
   <div class="question">
 
@@ -841,10 +847,16 @@ button {
 
 /* =====================================================
    URL APPS SCRIPT
+=====================================================
+
+   PENTING:
+   GANTI URL DI BAWAH DENGAN URL WEB APP APPS SCRIPT
+   YANG BERAKHIR DENGAN /exec.
+
 ===================================================== */
 
 const APPS_SCRIPT_URL =
-  "PASTE_URL_APPS_SCRIPT_ANDA_DI_SINI";
+  "https://script.google.com/macros/s/AKfycbyTxdv5z62Zkd8WcI8hSr9wicbx8YaoR8WK7COppuvZKvbxtw6acO6s1veTi25jvmTKVw/exec";
 
 
 /* =====================================================
@@ -863,15 +875,16 @@ let sudahKirim = false;
 
 let sedangMemproses = false;
 
+let sedangSubmit = false;
+
 
 /*
- * Digunakan untuk membedakan:
- *
- * 1. Siswa menekan ESC
- * 2. Siswa keluar fullscreen karena proses submit
+ * Untuk memastikan sistem hanya menghitung
+ * keluar fullscreen setelah fullscreen benar-benar
+ * berhasil dimasuki.
  */
 
-let sedangSubmit = false;
+let pernahMasukFullscreen = false;
 
 
 /* =====================================================
@@ -966,9 +979,19 @@ function panggilAppsScript(
     document.createElement("script");
 
 
+  let selesai =
+    false;
+
+
   const timeout =
     setTimeout(
       function() {
+
+        if (selesai) {
+          return;
+        }
+
+        selesai = true;
 
         cleanup();
 
@@ -976,7 +999,7 @@ function panggilAppsScript(
         if (gagal) {
 
           gagal(
-            "Waktu koneksi ke server habis."
+            "Waktu koneksi ke Google Apps Script habis. Periksa URL /exec dan deployment Apps Script."
           );
 
         }
@@ -988,6 +1011,12 @@ function panggilAppsScript(
 
   window[callbackName] =
     function(data) {
+
+      if (selesai) {
+        return;
+      }
+
+      selesai = true;
 
       clearTimeout(timeout);
 
@@ -1021,6 +1050,12 @@ function panggilAppsScript(
   script.onerror =
     function() {
 
+      if (selesai) {
+        return;
+      }
+
+      selesai = true;
+
       clearTimeout(timeout);
 
       cleanup();
@@ -1029,7 +1064,7 @@ function panggilAppsScript(
       if (gagal) {
 
         gagal(
-          "Tidak dapat terhubung ke Google Apps Script."
+          "Tidak dapat terhubung ke Google Apps Script. Pastikan URL /exec benar dan akses Web App diatur ke Anyone."
         );
 
       }
@@ -1130,14 +1165,19 @@ function mulaiKuis() {
   }
 
 
+  /*
+   * Cek apakah URL masih berupa placeholder.
+   */
+
   if (
-    APPS_SCRIPT_URL ===
-    "https://script.google.com/macros/s/AKfycbx4kYBQGsQVI8kLOTgU0no3uIiuosE2qfZSWrFVlNpCOPurkWqgjY4fweMuC9_da7j7eg/exec"
+    APPS_SCRIPT_URL.includes(
+      "GANTI_DENGAN_URL_APPS_SCRIPT_ANDA"
+    )
   ) {
 
     tampilkanPesan(
       "loginMessage",
-      "URL Apps Script belum dimasukkan.",
+      "URL Apps Script belum dimasukkan ke dalam kode.",
       "error"
     );
 
@@ -1156,11 +1196,13 @@ function mulaiKuis() {
     "cekSiswa",
 
     {
+
       nama:
         namaSiswa,
 
       kelas:
         kelasSiswa
+
     },
 
 
@@ -1247,8 +1289,23 @@ function masukFullscreen() {
 
     element
       .requestFullscreen()
+      .then(
+        function() {
+
+          pernahMasukFullscreen =
+            true;
+
+        }
+      )
       .catch(
-        function() {}
+        function() {
+
+          /*
+           * Jika browser menolak fullscreen,
+           * kuis tetap dapat digunakan.
+           */
+
+        }
       );
 
   }
@@ -1257,22 +1314,40 @@ function masukFullscreen() {
 
 
 /* =====================================================
-   DETEKSI KELUAR FULLSCREEN
+   DETEKSI FULLSCREEN
 ===================================================== */
 
 document.addEventListener(
   "fullscreenchange",
   function() {
 
-
     /*
-     * Jika kuis sedang aktif
-     * dan fullscreen keluar,
-     * berarti siswa menekan ESC
-     * atau keluar fullscreen.
+     * Jika fullscreen aktif,
+     * tandai bahwa siswa sudah benar-benar
+     * masuk fullscreen.
      */
 
     if (
+      document.fullscreenElement
+    ) {
+
+      pernahMasukFullscreen =
+        true;
+
+      return;
+
+    }
+
+
+    /*
+     * Jika fullscreen keluar setelah
+     * sebelumnya benar-benar masuk,
+     * maka langsung submit.
+     */
+
+    if (
+
+      pernahMasukFullscreen &&
 
       !document.fullscreenElement &&
 
@@ -1289,7 +1364,6 @@ document.addEventListener(
 
     ) {
 
-
       jumlahKeluarFullscreen++;
 
 
@@ -1303,6 +1377,8 @@ document.addEventListener(
 
       /*
        * LANGSUNG SUBMIT
+       *
+       * Tidak ada konfirmasi.
        */
 
       kirimJawaban(true);
@@ -1320,7 +1396,6 @@ document.addEventListener(
 document.addEventListener(
   "visibilitychange",
   function() {
-
 
     if (
 
@@ -1478,7 +1553,6 @@ function kirimJawaban(
   otomatisKarenaFullscreen
 ) {
 
-
   if (
     sudahKirim ||
     sedangMemproses
@@ -1495,10 +1569,7 @@ function kirimJawaban(
 
 
   /*
-   * Cek semua soal.
-   *
-   * Tidak memberikan koreksi
-   * tentang benar/salah kode.
+   * Pastikan semua soal terisi.
    */
 
   if (
@@ -1511,12 +1582,11 @@ function kirimJawaban(
 
 
   /*
-   * Jika siswa menekan tombol
-   * Kirim Jawaban secara normal,
+   * Jika tombol Kirim Jawaban ditekan,
    * tampilkan konfirmasi.
    *
    * Jika ESC,
-   * langsung kirim tanpa konfirmasi.
+   * langsung submit.
    */
 
   if (
@@ -1639,7 +1709,7 @@ function kirimJawaban(
 
 
       /*
-       * Tampilkan hasil
+       * Tampilkan halaman hasil.
        */
 
       document
@@ -1683,8 +1753,8 @@ function kirimJawaban(
 
 
       /*
-       * Keluar fullscreen setelah data
-       * sudah berhasil disimpan.
+       * Setelah data berhasil disimpan,
+       * keluar dari fullscreen.
        */
 
       if (
@@ -1699,6 +1769,10 @@ function kirimJawaban(
           );
 
       }
+
+
+      sedangSubmit =
+        false;
 
     },
 
