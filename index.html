@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 
@@ -304,6 +305,10 @@ button {
 }
 
 
+/* ==================================================
+   HASIL NILAI
+================================================== */
+
 .result {
 
   text-align:
@@ -322,6 +327,118 @@ button {
 
   margin:
     20px 0;
+
+}
+
+
+/* ==================================================
+   EVALUASI
+================================================== */
+
+.evaluasi-container {
+
+  margin-top:
+    30px;
+
+  text-align:
+    left;
+
+}
+
+
+.evaluasi-intro {
+
+  background:
+    #eff6ff;
+
+  border-left:
+    5px solid #2563eb;
+
+  padding:
+    15px;
+
+  border-radius:
+    10px;
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.evaluasi-box {
+
+  border-radius:
+    14px;
+
+  padding:
+    18px;
+
+  margin-bottom:
+    18px;
+
+  border:
+    1px solid #e5e7eb;
+
+}
+
+
+.evaluasi-benar {
+
+  background:
+    #f0fdf4;
+
+  border-left:
+    6px solid #22c55e;
+
+}
+
+
+.evaluasi-salah {
+
+  background:
+    #fff7ed;
+
+  border-left:
+    6px solid #f97316;
+
+}
+
+
+.evaluasi-box h3 {
+
+  margin-top:
+    0;
+
+}
+
+
+.evaluasi-box ul {
+
+  padding-left:
+    22px;
+
+}
+
+
+.evaluasi-box li {
+
+  margin-bottom:
+    8px;
+
+  line-height:
+    1.5;
+
+}
+
+
+.feedback-title {
+
+  font-weight:
+    bold;
+
+  margin-top:
+    12px;
 
 }
 
@@ -436,7 +553,7 @@ button {
   .nilai {
 
     font-size:
-      48px;
+    48px;
 
   }
 
@@ -535,7 +652,11 @@ button {
       </li>
 
       <li>
-        Aktivitas berpindah tab/halaman dan keluar fullscreen akan tercatat.
+        Jika berpindah tab/halaman, jawaban akan langsung dikirim.
+      </li>
+
+      <li>
+        Jika keluar fullscreen/menekan ESC, jawaban akan langsung dikirim.
       </li>
 
       <li>
@@ -799,7 +920,7 @@ button {
 >
 
   <h1>
-    Kuis Selesai
+    🎉 Kuis Selesai
   </h1>
 
   <p>
@@ -817,6 +938,33 @@ button {
 
   <p id="resultMessage"></p>
 
+
+  <!-- ==================================================
+       EVALUASI JAWABAN
+  ================================================== -->
+
+  <div
+    id="evaluasiContainer"
+    class="evaluasi-container"
+  >
+
+    <div class="evaluasi-intro">
+
+      <strong>🔎 Evaluasi Jawaban</strong>
+
+      <p>
+        Perhatikan bagian yang masih perlu diperbaiki.
+        Evaluasi ini membantu kamu mengetahui kesalahan
+        penulisan sintaks Python.
+      </p>
+
+    </div>
+
+
+    <div id="evaluasiJawaban"></div>
+
+  </div>
+
 </div>
 
 
@@ -829,12 +977,6 @@ button {
 
 /* =====================================================
    URL APPS SCRIPT
-=====================================================
-
-   PENTING:
-   GANTI URL DI BAWAH DENGAN URL WEB APP APPS SCRIPT
-   YANG BERAKHIR DENGAN /exec.
-
 ===================================================== */
 
 const APPS_SCRIPT_URL =
@@ -859,13 +1001,6 @@ let sedangMemproses = false;
 
 let sedangSubmit = false;
 
-
-/*
- * Untuk memastikan sistem hanya menghitung
- * keluar fullscreen setelah fullscreen benar-benar
- * berhasil dimasuki.
- */
-
 let pernahMasukFullscreen = false;
 
 
@@ -878,7 +1013,6 @@ function tampilkanLoading(teks) {
   document
     .getElementById("loadingText")
     .textContent = teks;
-
 
   document
     .getElementById("loading")
@@ -911,15 +1045,12 @@ function tampilkanPesan(
   const el =
     document.getElementById(id);
 
-
   el.textContent =
     pesan;
-
 
   el.className =
     "status-message " +
     tipe;
-
 
   el.style.display =
     "block";
@@ -1020,7 +1151,6 @@ function panggilAppsScript(
         .removeChild(script);
 
     }
-
 
     delete window[
       callbackName
@@ -1146,10 +1276,6 @@ function mulaiKuis() {
 
   }
 
-
-  /*
-   * Cek apakah URL masih berupa placeholder.
-   */
 
   if (
     APPS_SCRIPT_URL.includes(
@@ -1282,11 +1408,6 @@ function masukFullscreen() {
       .catch(
         function() {
 
-          /*
-           * Jika browser menolak fullscreen,
-           * kuis tetap dapat digunakan.
-           */
-
         }
       );
 
@@ -1303,12 +1424,6 @@ document.addEventListener(
   "fullscreenchange",
   function() {
 
-    /*
-     * Jika fullscreen aktif,
-     * tandai bahwa siswa sudah benar-benar
-     * masuk fullscreen.
-     */
-
     if (
       document.fullscreenElement
     ) {
@@ -1320,12 +1435,6 @@ document.addEventListener(
 
     }
 
-
-    /*
-     * Jika fullscreen keluar setelah
-     * sebelumnya benar-benar masuk,
-     * maka langsung submit.
-     */
 
     if (
 
@@ -1357,12 +1466,6 @@ document.addEventListener(
         jumlahKeluarFullscreen;
 
 
-      /*
-       * LANGSUNG SUBMIT
-       *
-       * Tidak ada konfirmasi.
-       */
-
       kirimJawaban(true);
 
     }
@@ -1372,7 +1475,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   DETEKSI PINDAH TAB
+   DETEKSI PINDAH TAB / HALAMAN
 ===================================================== */
 
 document.addEventListener(
@@ -1405,6 +1508,15 @@ document.addEventListener(
         )
         .textContent =
         jumlahPindahTab;
+
+
+      /*
+       * LANGSUNG SUBMIT
+       *
+       * Tidak menunggu siswa kembali.
+       */
+
+      kirimJawaban(true);
 
     }
 
@@ -1528,11 +1640,181 @@ function cekKelengkapanJawaban() {
 
 
 /* =====================================================
+   TAMPILKAN EVALUASI
+===================================================== */
+
+function tampilkanEvaluasi(
+  evaluasi
+) {
+
+  const container =
+    document.getElementById(
+      "evaluasiJawaban"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  if (
+    !evaluasi ||
+    !Array.isArray(evaluasi)
+  ) {
+
+    container.innerHTML = `
+      <div class="evaluasi-box">
+        <p>
+          Evaluasi jawaban belum tersedia.
+        </p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  evaluasi.forEach(
+    function(item) {
+
+      const kotak =
+        document.createElement("div");
+
+
+      kotak.className =
+        item.benar
+          ? "evaluasi-box evaluasi-benar"
+          : "evaluasi-box evaluasi-salah";
+
+
+      if (item.benar) {
+
+        kotak.innerHTML = `
+
+          <h3>
+            Soal ${item.soal} — ✅ Benar
+          </h3>
+
+          <p>
+            Jawaban kamu sudah sesuai dengan
+            struktur dan sintaks Python yang
+            diperlukan pada soal ini.
+          </p>
+
+        `;
+
+      }
+
+      else {
+
+        let daftarKesalahan =
+          "";
+
+
+        if (
+          item.kesalahan &&
+          item.kesalahan.length > 0
+        ) {
+
+          item.kesalahan.forEach(
+            function(error) {
+
+              daftarKesalahan += `
+                <li>
+                  ${escapeHTML(error)}
+                </li>
+              `;
+
+            }
+          );
+
+        }
+
+        else {
+
+          daftarKesalahan = `
+            <li>
+              Masih terdapat bagian kode yang
+              belum sesuai dengan ketentuan soal.
+            </li>
+          `;
+
+        }
+
+
+        kotak.innerHTML = `
+
+          <h3>
+            Soal ${item.soal} — ❌ Perlu Diperbaiki
+          </h3>
+
+          <p class="feedback-title">
+            🔎 Bagian yang perlu diperiksa:
+          </p>
+
+          <ul>
+            ${daftarKesalahan}
+          </ul>
+
+          <p>
+            💡 Coba periksa kembali tanda baca,
+            operator, penulisan variabel,
+            struktur if-else, dan indentation.
+          </p>
+
+        `;
+
+      }
+
+
+      container.appendChild(
+        kotak
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   PENGAMAN TAMPILAN TEKS
+===================================================== */
+
+function escapeHTML(teks) {
+
+  return String(teks || "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =====================================================
    KIRIM JAWABAN
 ===================================================== */
 
 function kirimJawaban(
-  otomatisKarenaFullscreen
+  otomatis
 ) {
 
   if (
@@ -1558,6 +1840,12 @@ function kirimJawaban(
     !cekKelengkapanJawaban()
   ) {
 
+    /*
+     * Jika submit otomatis tetapi ada
+     * jawaban kosong, tetap tidak boleh
+     * mengirim jawaban kosong.
+     */
+
     return;
 
   }
@@ -1567,13 +1855,12 @@ function kirimJawaban(
    * Jika tombol Kirim Jawaban ditekan,
    * tampilkan konfirmasi.
    *
-   * Jika ESC,
+   * Jika otomatis karena pindah tab
+   * atau keluar fullscreen,
    * langsung submit.
    */
 
-  if (
-    !otomatisKarenaFullscreen
-  ) {
+  if (!otomatis) {
 
     const yakin =
       confirm(
@@ -1599,7 +1886,9 @@ function kirimJawaban(
 
 
   tampilkanLoading(
-    "Sedang menyimpan jawaban..."
+    otomatis
+      ? "Aktivitas terdeteksi. Jawaban sedang dikirim..."
+      : "Sedang menyimpan jawaban..."
   );
 
 
@@ -1691,7 +1980,7 @@ function kirimJawaban(
 
 
       /*
-       * Tampilkan halaman hasil.
+       * Sembunyikan halaman kuis.
        */
 
       document
@@ -1710,6 +1999,10 @@ function kirimJawaban(
         .add("hidden");
 
 
+      /*
+       * Tampilkan halaman hasil.
+       */
+
       document
         .getElementById(
           "resultPage"
@@ -1717,6 +2010,10 @@ function kirimJawaban(
         .classList
         .remove("hidden");
 
+
+      /*
+       * Tampilkan nilai.
+       */
 
       document
         .getElementById(
@@ -1735,8 +2032,17 @@ function kirimJawaban(
 
 
       /*
-       * Setelah data berhasil disimpan,
-       * keluar dari fullscreen.
+       * Tampilkan evaluasi kesalahan.
+       */
+
+      tampilkanEvaluasi(
+        hasil.evaluasi
+      );
+
+
+      /*
+       * Keluar fullscreen setelah
+       * jawaban berhasil disimpan.
        */
 
       if (
@@ -1789,3 +2095,4 @@ function kirimJawaban(
 </body>
 
 </html>
+```
