@@ -141,18 +141,6 @@
       color: #1e3a8a;
     }
 
-    .code-box {
-      background: #0f172a;
-      color: #e2e8f0;
-      padding: 15px;
-      border-radius: 9px;
-      overflow-x: auto;
-      font-family: Consolas, monospace;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      margin: 12px 0;
-    }
-
     .status-box {
       padding: 15px;
       border-radius: 10px;
@@ -225,6 +213,24 @@
       color: #1e3a8a;
     }
 
+    code {
+      background: #e2e8f0;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    .code-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 9px;
+      overflow-x: auto;
+      font-family: Consolas, monospace;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      margin: 12px 0;
+    }
+
     @media (max-width: 600px) {
       .container {
         width: 95%;
@@ -250,9 +256,7 @@
 
 <div class="container">
 
-  <!-- ========================= -->
   <!-- HEADER -->
-  <!-- ========================= -->
 
   <div class="card header">
     <h1>💻 Kuis KKA</h1>
@@ -261,9 +265,7 @@
   </div>
 
 
-  <!-- ========================= -->
-  <!-- LOGIN SISWA -->
-  <!-- ========================= -->
+  <!-- LOGIN -->
 
   <div class="card" id="loginSection">
 
@@ -303,10 +305,7 @@
       Aktivitas tersebut akan dicatat oleh sistem.
     </div>
 
-    <div
-      id="loginStatus"
-      class="status-box"
-    ></div>
+    <div id="loginStatus" class="status-box"></div>
 
     <button
       class="btn-primary"
@@ -319,9 +318,7 @@
   </div>
 
 
-  <!-- ========================= -->
   <!-- LOADING -->
-  <!-- ========================= -->
 
   <div
     class="card status-box loading"
@@ -331,15 +328,14 @@
   </div>
 
 
-  <!-- ========================= -->
   <!-- KUIS -->
-  <!-- ========================= -->
 
   <div id="quizSection">
 
     <div class="card">
 
       <div class="student-info">
+
         <div>
           <strong>Nama:</strong>
           <span id="displayNama"></span>
@@ -349,10 +345,13 @@
           <strong>Kelas:</strong>
           <span id="displayKelas"></span>
         </div>
+
       </div>
 
       <div class="warning">
+
         ⚠️ <strong>Peraturan Kuis</strong>
+
         <ul>
           <li>Kuis hanya dapat dikirim satu kali.</li>
           <li>Jangan berpindah tab.</li>
@@ -361,14 +360,13 @@
           <li>Gunakan tanda baca dan indentasi Python dengan benar.</li>
           <li>Jika nama variabel terdiri dari beberapa kata, gunakan underscore (_).</li>
         </ul>
+
       </div>
 
     </div>
 
 
-    <!-- ========================= -->
     <!-- AKTIVITAS -->
-    <!-- ========================= -->
 
     <div class="card activity">
 
@@ -392,16 +390,15 @@
     </div>
 
 
-    <!-- ========================= -->
     <!-- SOAL 1 -->
-    <!-- ========================= -->
 
     <div class="card question">
 
       <h3>Soal 1 — Kondisi Lampu</h3>
 
       <p>
-        Buatlah program Python menggunakan <strong>if-else</strong>
+        Buatlah program Python menggunakan
+        <strong>if-else</strong>
         untuk menentukan kondisi lampu.
       </p>
 
@@ -413,8 +410,15 @@
       <p>Ketentuannya:</p>
 
       <ul>
-        <li>Jika lampu = "nyala", tampilkan <strong>“Lampu sedang menyala”</strong>.</li>
-        <li>Jika selain itu, tampilkan <strong>“Lampu sedang mati”</strong>.</li>
+        <li>
+          Jika lampu = "nyala", tampilkan
+          <strong>“Lampu sedang menyala”</strong>.
+        </li>
+
+        <li>
+          Jika selain itu, tampilkan
+          <strong>“Lampu sedang mati”</strong>.
+        </li>
       </ul>
 
       <p>
@@ -430,16 +434,15 @@
     </div>
 
 
-    <!-- ========================= -->
     <!-- SOAL 2 -->
-    <!-- ========================= -->
 
     <div class="card question">
 
       <h3>Soal 2 — Pengumpulan Tugas</h3>
 
       <p>
-        Buatlah program Python menggunakan <strong>if-else</strong>
+        Buatlah program Python menggunakan
+        <strong>if-else</strong>
         untuk menentukan apakah tugas diterima atau terlambat.
       </p>
 
@@ -451,13 +454,14 @@
 
       <ul>
         <li>
-          Jika jam pengumpulan <strong>kurang dari atau sama dengan 15</strong>,
+          Jika jam pengumpulan
+          <strong>kurang dari atau sama dengan 15</strong>,
           tampilkan <strong>“Tugas diterima”</strong>.
         </li>
 
         <li>
-          Jika lebih dari 15, tampilkan
-          <strong>“Tugas terlambat”</strong>.
+          Jika lebih dari 15,
+          tampilkan <strong>“Tugas terlambat”</strong>.
         </li>
       </ul>
 
@@ -474,16 +478,15 @@
     </div>
 
 
-    <!-- ========================= -->
     <!-- SOAL 3 -->
-    <!-- ========================= -->
 
     <div class="card question">
 
       <h3>Soal 3 — Jumlah Buku</h3>
 
       <p>
-        Buatlah program Python menggunakan <strong>if-else</strong>
+        Buatlah program Python menggunakan
+        <strong>if-else</strong>
         untuk menentukan apakah jumlah buku sudah cukup.
       </p>
 
@@ -494,20 +497,24 @@
       <p>Ketentuannya:</p>
 
       <ul>
+
         <li>
-          Jika jumlah buku <strong>3 atau lebih</strong>,
+          Jika jumlah buku
+          <strong>3 atau lebih</strong>,
           tampilkan <strong>“Buku sudah cukup”</strong>.
         </li>
 
         <li>
-          Jika kurang dari 3, tampilkan
-          <strong>“Buku masih kurang”</strong>.
+          Jika kurang dari 3,
+          tampilkan <strong>“Buku masih kurang”</strong>.
         </li>
+
       </ul>
 
       <p>
-        Jika nama variabel terdiri dari dua kata, misalnya
-        <code>jumlah buku</code>, gunakan underscore sehingga menjadi
+        Jika nama variabel terdiri dari dua kata,
+        misalnya <code>jumlah buku</code>,
+        gunakan underscore sehingga menjadi
         <code>jumlah_buku</code>.
       </p>
 
@@ -520,9 +527,7 @@
     </div>
 
 
-    <!-- ========================= -->
     <!-- SUBMIT -->
-    <!-- ========================= -->
 
     <div class="card">
 
@@ -544,9 +549,7 @@
   </div>
 
 
-  <!-- ========================= -->
   <!-- HASIL -->
-  <!-- ========================= -->
 
   <div
     class="card"
@@ -588,7 +591,7 @@
 <script>
 
   // ==========================================
-  // DATA SISWA
+  // VARIABEL SISTEM
   // ==========================================
 
   let namaSiswa = "";
@@ -610,17 +613,15 @@
       return;
     }
 
-    const nama = document
-      .getElementById("nama")
-      .value
-      .trim();
+    const nama =
+      document.getElementById("nama").value.trim();
 
-    const kelas = document
-      .getElementById("kelas")
-      .value;
+    const kelas =
+      document.getElementById("kelas").value;
 
-    const status = document
-      .getElementById("loginStatus");
+    const status =
+      document.getElementById("loginStatus");
+
 
     if (nama === "") {
 
@@ -632,6 +633,7 @@
 
       return;
     }
+
 
     if (kelas === "") {
 
@@ -649,64 +651,67 @@
     kelasSiswa = kelas;
 
 
-    document
-      .getElementById("startButton")
-      .disabled = true;
+    const tombol =
+      document.getElementById("startButton");
+
+    tombol.disabled = true;
 
 
-    document
-      .getElementById("loadingScreen")
-      .style.display = "block";
+    document.getElementById("loadingScreen").style.display =
+      "block";
+
+
+    tampilkanStatus(
+      status,
+      "loading",
+      "⏳ Sedang memeriksa data siswa..."
+    );
 
 
     // ==========================================
-    // HUBUNGKAN DENGAN GOOGLE APPS SCRIPT
+    // CEK DATA SISWA
     // ==========================================
 
     google.script.run
 
       .withSuccessHandler(function(result) {
 
-        document
-          .getElementById("loadingScreen")
-          .style.display = "none";
+        document.getElementById("loadingScreen").style.display =
+          "none";
 
 
-        if (result.berhasil) {
+        if (result && result.berhasil) {
 
-          document
-            .getElementById("loginSection")
-            .style.display = "none";
-
-
-          document
-            .getElementById("quizSection")
-            .style.display = "block";
+          document.getElementById("loginSection").style.display =
+            "none";
 
 
-          document
-            .getElementById("displayNama")
-            .textContent = namaSiswa;
+          document.getElementById("quizSection").style.display =
+            "block";
 
 
-          document
-            .getElementById("displayKelas")
-            .textContent = kelasSiswa;
+          document.getElementById("displayNama").textContent =
+            namaSiswa;
+
+
+          document.getElementById("displayKelas").textContent =
+            kelasSiswa;
 
 
           masukFullscreen();
 
+
         } else {
 
-          document
-            .getElementById("startButton")
-            .disabled = false;
+          tombol.disabled = false;
 
 
           tampilkanStatus(
             status,
             "error",
-            result.pesan
+            result && result.pesan
+              ? result.pesan
+              : "❌ Data siswa tidak dapat diperiksa."
           );
 
         }
@@ -715,22 +720,20 @@
 
       .withFailureHandler(function(error) {
 
-        document
-          .getElementById("loadingScreen")
-          .style.display = "none";
+        document.getElementById("loadingScreen").style.display =
+          "none";
 
 
-        document
-          .getElementById("startButton")
-          .disabled = false;
+        tombol.disabled = false;
 
 
         tampilkanStatus(
           status,
           "error",
           "❌ Sistem gagal memeriksa data siswa. " +
-          "Silakan hubungi guru."
+          "Pastikan Code.gs sudah dipasang dengan benar."
         );
+
 
         console.error(error);
 
@@ -752,11 +755,14 @@
 
     const elem = document.documentElement;
 
+
     if (elem.requestFullscreen) {
 
       elem.requestFullscreen().catch(function() {});
 
-    } else if (elem.webkitRequestFullscreen) {
+    }
+
+    else if (elem.webkitRequestFullscreen) {
 
       elem.webkitRequestFullscreen();
 
@@ -781,9 +787,10 @@
 
         jumlahKeluarFullscreen++;
 
-        document
-          .getElementById("fullscreenCount")
-          .textContent = jumlahKeluarFullscreen;
+
+        document.getElementById("fullscreenCount").textContent =
+          jumlahKeluarFullscreen;
+
 
         updateActivityStatus();
 
@@ -809,9 +816,10 @@
 
         jumlahPindahTab++;
 
-        document
-          .getElementById("tabCount")
-          .textContent = jumlahPindahTab;
+
+        document.getElementById("tabCount").textContent =
+          jumlahPindahTab;
+
 
         updateActivityStatus();
 
@@ -829,6 +837,7 @@
 
     let statusText = "";
 
+
     if (
       jumlahPindahTab === 0 &&
       jumlahKeluarFullscreen === 0
@@ -836,9 +845,12 @@
 
       statusText = "Normal";
 
-    } else {
+    }
+
+    else {
 
       let aktivitas = [];
+
 
       if (jumlahPindahTab > 0) {
 
@@ -850,6 +862,7 @@
 
       }
 
+
       if (jumlahKeluarFullscreen > 0) {
 
         aktivitas.push(
@@ -860,6 +873,7 @@
 
       }
 
+
       statusText =
         "Terdeteksi " +
         aktivitas.join(" dan ");
@@ -867,9 +881,8 @@
     }
 
 
-    document
-      .getElementById("activityStatus")
-      .textContent = statusText;
+    document.getElementById("activityStatus").textContent =
+      statusText;
 
   }
 
@@ -898,6 +911,7 @@
 
     }
 
+
     if (jawaban2 === "") {
 
       alert("Soal 2 belum dikerjakan.");
@@ -905,6 +919,7 @@
       return false;
 
     }
+
 
     if (jawaban3 === "") {
 
@@ -929,6 +944,7 @@
     const pola =
       /^\s*[A-Za-z_][A-Za-z0-9_]*\s+[A-Za-z_][A-Za-z0-9_]*\s*=/m;
 
+
     return pola.test(kode);
 
   }
@@ -941,16 +957,12 @@
   function kirimJawaban() {
 
     if (sudahKirim) {
-
       return;
-
     }
 
 
     if (!validasiJawaban()) {
-
       return;
-
     }
 
 
@@ -965,7 +977,7 @@
 
 
     // ==========================================
-    // PERINGATAN VARIABEL
+    // PERINGATAN VARIABEL SPASI
     // ==========================================
 
     if (adaVariabelSpasi(jawaban1)) {
@@ -1012,9 +1024,7 @@
 
 
     if (!konfirmasi) {
-
       return;
-
     }
 
 
@@ -1024,7 +1034,9 @@
     const tombol =
       document.getElementById("submitButton");
 
+
     tombol.disabled = true;
+
 
     tombol.textContent =
       "⏳ Mengirim jawaban...";
@@ -1032,6 +1044,7 @@
 
     const status =
       document.getElementById("submitStatus");
+
 
     tampilkanStatus(
       status,
@@ -1041,31 +1054,29 @@
 
 
     // ==========================================
-    // KIRIM KE CODE.GS
+    // KIRIM KE GOOGLE APPS SCRIPT
     // ==========================================
 
     google.script.run
 
       .withSuccessHandler(function(result) {
 
-        if (result.berhasil) {
+        if (result && result.berhasil) {
 
-          document
-            .getElementById("quizSection")
-            .style.display = "none";
-
-
-          document
-            .getElementById("resultScreen")
-            .style.display = "block";
+          document.getElementById("quizSection").style.display =
+            "none";
 
 
-          document
-            .getElementById("finalScore")
-            .textContent = result.nilai;
+          document.getElementById("resultScreen").style.display =
+            "block";
+
+
+          document.getElementById("finalScore").textContent =
+            result.nilai;
 
 
           let aktivitas = "";
+
 
           if (
             jumlahPindahTab === 0 &&
@@ -1073,9 +1084,12 @@
           ) {
 
             aktivitas =
-              "Aktivitas selama pengerjaan: <strong>Normal</strong>";
+              "Aktivitas selama pengerjaan: " +
+              "<strong>Normal</strong>";
 
-          } else {
+          }
+
+          else {
 
             aktivitas =
               "Aktivitas selama pengerjaan:<br>" +
@@ -1089,9 +1103,8 @@
           }
 
 
-          document
-            .getElementById("finalActivity")
-            .innerHTML = aktivitas;
+          document.getElementById("finalActivity").innerHTML =
+            aktivitas;
 
 
           // Keluar fullscreen
@@ -1104,11 +1117,15 @@
 
           }
 
-        } else {
+        }
+
+        else {
 
           sudahKirim = false;
 
+
           tombol.disabled = false;
+
 
           tombol.textContent =
             "📤 Kirim Jawaban";
@@ -1117,7 +1134,9 @@
           tampilkanStatus(
             status,
             "error",
-            result.pesan
+            result && result.pesan
+              ? result.pesan
+              : "❌ Jawaban tidak dapat dikirim."
           );
 
         }
@@ -1128,7 +1147,9 @@
 
         sudahKirim = false;
 
+
         tombol.disabled = false;
+
 
         tombol.textContent =
           "📤 Kirim Jawaban";
@@ -1140,6 +1161,7 @@
           "❌ Jawaban gagal dikirim. " +
           "Silakan hubungi guru."
         );
+
 
         console.error(error);
 
@@ -1179,15 +1201,19 @@
     element.className =
       "status-box " + tipe;
 
-    element.innerHTML = pesan;
 
-    element.style.display = "block";
+    element.innerHTML =
+      pesan;
+
+
+    element.style.display =
+      "block";
 
   }
 
 
   // ==========================================
-  // BLOK COPY / PASTE
+  // BLOK COPY / PASTE / CUT
   // ==========================================
 
   document.addEventListener(
@@ -1248,7 +1274,6 @@
 
     }
   );
-
 
 </script>
 
