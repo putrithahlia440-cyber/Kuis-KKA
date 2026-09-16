@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 
@@ -13,548 +12,253 @@
 
 <title>Kuis KKA - Logika IF-ELSE Python</title>
 
-
 <style>
 
 * {
   box-sizing: border-box;
 }
 
-
 body {
-
   margin: 0;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  background:
-    #f4f7fb;
-
-  color:
-    #1f2937;
-
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #1f2937;
 }
-
 
 .container {
-
   width: 92%;
-
   max-width: 850px;
-
-  margin:
-    30px auto;
-
+  margin: 30px auto;
 }
-
 
 .card {
-
-  background:
-    white;
-
-  border-radius:
-    18px;
-
-  padding:
-    28px;
-
-  box-shadow:
-    0 8px 25px
-    rgba(0,0,0,0.08);
-
-  margin-bottom:
-    20px;
-
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
-
 
 .header {
-
-  text-align:
-    center;
-
+  text-align: center;
 }
-
 
 .header h1 {
-
-  margin-bottom:
-    8px;
-
+  margin-bottom: 8px;
 }
-
 
 .header p {
-
-  color:
-    #6b7280;
-
+  color: #6b7280;
 }
-
 
 label {
-
-  display:
-    block;
-
-  margin-top:
-    15px;
-
-  margin-bottom:
-    7px;
-
-  font-weight:
-    bold;
-
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  font-weight: bold;
 }
-
 
 input,
 select,
 textarea {
-
-  width:
-    100%;
-
-  padding:
-    12px;
-
-  border:
-    1px solid #d1d5db;
-
-  border-radius:
-    10px;
-
-  font-size:
-    15px;
-
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
 }
-
 
 textarea {
-
-  min-height:
-    190px;
-
-  resize:
-    vertical;
-
-  font-family:
-    Consolas,
-    monospace;
-
-  line-height:
-    1.5;
-
+  min-height: 190px;
+  resize: vertical;
+  font-family: Consolas, monospace;
+  line-height: 1.5;
 }
-
 
 button {
-
-  border:
-    none;
-
-  border-radius:
-    10px;
-
-  padding:
-    13px 20px;
-
-  font-size:
-    15px;
-
-  font-weight:
-    bold;
-
-  cursor:
-    pointer;
-
+  border: none;
+  border-radius: 10px;
+  padding: 13px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
 }
-
 
 .btn-primary {
-
-  width:
-    100%;
-
-  margin-top:
-    20px;
-
-  background:
-    #2563eb;
-
-  color:
-    white;
-
+  width: 100%;
+  margin-top: 20px;
+  background: #2563eb;
+  color: white;
 }
-
 
 .btn-primary:hover {
-
-  background:
-    #1d4ed8;
-
+  background: #1d4ed8;
 }
-
 
 .hidden {
-
-  display:
-    none !important;
-
+  display: none !important;
 }
-
 
 .warning {
-
-  background:
-    #fff7ed;
-
-  border-left:
-    5px solid #f97316;
-
-  padding:
-    15px;
-
-  border-radius:
-    10px;
-
-  margin-top:
-    15px;
-
+  background: #fff7ed;
+  border-left: 5px solid #f97316;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
 }
-
 
 .activity {
-
-  position:
-    sticky;
-
-  top:
-    0;
-
-  z-index:
-    20;
-
-  background:
-    #111827;
-
-  color:
-    white;
-
-  padding:
-    12px;
-
-  text-align:
-    center;
-
-  font-weight:
-    bold;
-
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #111827;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
 }
-
 
 .question {
-
-  margin-top:
-    25px;
-
-  padding:
-    20px;
-
-  border:
-    1px solid #e5e7eb;
-
-  border-radius:
-    15px;
-
-  background:
-    #fafafa;
-
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  background: #fafafa;
 }
-
 
 .question h3 {
-
-  margin-top:
-    0;
-
+  margin-top: 0;
 }
-
 
 .case {
-
-  background:
-    white;
-
-  padding:
-    15px;
-
-  border-radius:
-    10px;
-
-  margin-bottom:
-    15px;
-
-  border-left:
-    5px solid #2563eb;
-
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 5px solid #2563eb;
 }
 
-
 /* ==================================================
-   HASIL NILAI
+   HASIL
 ================================================== */
 
 .result {
-
-  text-align:
-    center;
-
+  text-align: center;
 }
-
 
 .nilai {
-
-  font-size:
-    60px;
-
-  font-weight:
-    bold;
-
-  margin:
-    20px 0;
-
+  font-size: 60px;
+  font-weight: bold;
+  margin: 20px 0;
 }
-
 
 /* ==================================================
    EVALUASI
 ================================================== */
 
 .evaluasi-container {
-
-  margin-top:
-    30px;
-
-  text-align:
-    left;
-
+  margin-top: 30px;
+  text-align: left;
 }
-
 
 .evaluasi-intro {
-
-  background:
-    #eff6ff;
-
-  border-left:
-    5px solid #2563eb;
-
-  padding:
-    15px;
-
-  border-radius:
-    10px;
-
-  margin-bottom:
-    20px;
-
+  background: #eff6ff;
+  border-left: 5px solid #2563eb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
-
 
 .evaluasi-box {
-
-  border-radius:
-    14px;
-
-  padding:
-    18px;
-
-  margin-bottom:
-    18px;
-
-  border:
-    1px solid #e5e7eb;
-
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  border: 1px solid #e5e7eb;
 }
-
 
 .evaluasi-benar {
-
-  background:
-    #f0fdf4;
-
-  border-left:
-    6px solid #22c55e;
-
+  background: #f0fdf4;
+  border-left: 6px solid #22c55e;
 }
-
 
 .evaluasi-salah {
-
-  background:
-    #fff7ed;
-
-  border-left:
-    6px solid #f97316;
-
+  background: #fff7ed;
+  border-left: 6px solid #f97316;
 }
-
 
 .evaluasi-box h3 {
-
-  margin-top:
-    0;
-
+  margin-top: 0;
 }
-
 
 .evaluasi-box ul {
-
-  padding-left:
-    22px;
-
+  padding-left: 22px;
 }
-
 
 .evaluasi-box li {
-
-  margin-bottom:
-    8px;
-
-  line-height:
-    1.5;
-
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
-
 
 .feedback-title {
-
-  font-weight:
-    bold;
-
-  margin-top:
-    12px;
-
+  font-weight: bold;
+  margin-top: 12px;
 }
-
 
 .loading {
-
-  position:
-    fixed;
-
-  inset:
-    0;
-
-  background:
-    rgba(255,255,255,0.97);
-
-  z-index:
-    9999;
-
-  display:
-    flex;
-
-  justify-content:
-    center;
-
-  align-items:
-    center;
-
-  text-align:
-    center;
-
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.97);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-
 
 .loading-box {
-
-  background:
-    white;
-
-  padding:
-    30px;
-
-  border-radius:
-    18px;
-
-  box-shadow:
-    0 10px 35px
-    rgba(0,0,0,0.12);
-
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  max-width: 400px;
+  width: 90%;
 }
-
 
 .status-message {
-
-  margin-top:
-    15px;
-
-  padding:
-    12px;
-
-  border-radius:
-    10px;
-
-  display:
-    none;
-
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  display: none;
 }
-
 
 .error {
-
-  background:
-    #fee2e2;
-
-  color:
-    #991b1b;
-
+  background: #fee2e2;
+  color: #991b1b;
 }
-
 
 .success {
-
-  background:
-    #dcfce7;
-
-  color:
-    #166534;
-
+  background: #dcfce7;
+  color: #166534;
 }
 
+.info {
+  background: #dbeafe;
+  color: #1e40af;
+}
 
 @media(max-width:600px) {
 
   .container {
-
-    width:
-      95%;
-
-    margin:
-      15px auto;
-
+    width: 95%;
+    margin: 15px auto;
   }
-
 
   .card {
-
-    padding:
-      18px;
-
+    padding: 18px;
   }
 
-
   .nilai {
-
-    font-size:
-    48px;
-
+    font-size: 48px;
   }
 
 }
@@ -589,7 +293,6 @@ button {
 </div>
 
 
-
 <!-- ==================================================
      AKTIVITAS
 ================================================== -->
@@ -609,7 +312,6 @@ button {
   <span id="fullscreenText">0</span>
 
 </div>
-
 
 
 <div class="container">
@@ -656,7 +358,8 @@ button {
       </li>
 
       <li>
-        Jika keluar fullscreen/menekan ESC, jawaban akan langsung dikirim.
+        Jika keluar fullscreen/menekan ESC,
+        jawaban akan langsung dikirim.
       </li>
 
       <li>
@@ -718,7 +421,6 @@ button {
 </div>
 
 
-
 <!-- ==================================================
      KUIS
 ================================================== -->
@@ -728,186 +430,178 @@ button {
   class="hidden"
 >
 
+  <div class="card">
 
-<div class="card">
+    <div class="header">
 
-  <div class="header">
-
-    <h1>
-      Kuis IF-ELSE Python
-    </h1>
-
-    <p>
-      Tuliskan kode Python berdasarkan kasus yang diberikan.
-    </p>
-
-  </div>
-
-
-  <!-- ==================================================
-       SOAL 1
-  ================================================== -->
-
-  <div class="question">
-
-    <h3>
-      Soal 1 — Kondisi Lampu
-    </h3>
-
-
-    <div class="case">
+      <h1>
+        Kuis IF-ELSE Python
+      </h1>
 
       <p>
-        Buatlah program Python yang meminta pengguna
-        memasukkan kondisi lampu, yaitu
-        <code>nyala</code> atau <code>mati</code>.
-      </p>
-
-      <p>
-        Jika kondisi lampu adalah
-        <strong>nyala</strong>, tampilkan:
-      </p>
-
-      <p>
-        <strong>Lampu sedang menyala</strong>
-      </p>
-
-      <p>
-        Jika kondisi lainnya, tampilkan:
-      </p>
-
-      <p>
-        <strong>Lampu sedang mati</strong>
+        Tuliskan kode Python berdasarkan kasus yang diberikan.
       </p>
 
     </div>
 
 
-    <textarea
-      id="jawaban1"
-      placeholder="Tuliskan kode Python di sini..."
-      spellcheck="false"
-    ></textarea>
+    <!-- ==================================================
+         SOAL 1
+    ================================================== -->
 
-  </div>
+    <div class="question">
+
+      <h3>
+        Soal 1 — Kondisi Lampu
+      </h3>
+
+      <div class="case">
+
+        <p>
+          Buatlah program Python yang meminta pengguna
+          memasukkan kondisi lampu, yaitu
+          <code>nyala</code> atau <code>mati</code>.
+        </p>
+
+        <p>
+          Jika kondisi lampu adalah
+          <strong>nyala</strong>, tampilkan:
+        </p>
+
+        <p>
+          <strong>Lampu sedang menyala</strong>
+        </p>
+
+        <p>
+          Jika kondisi lainnya, tampilkan:
+        </p>
+
+        <p>
+          <strong>Lampu sedang mati</strong>
+        </p>
+
+      </div>
 
 
-
-  <!-- ==================================================
-       SOAL 2
-  ================================================== -->
-
-  <div class="question">
-
-    <h3>
-      Soal 2 — Batas Waktu Pengumpulan
-    </h3>
-
-
-    <div class="case">
-
-      <p>
-        Buatlah program Python yang meminta pengguna
-        memasukkan jam pengumpulan tugas.
-      </p>
-
-      <p>
-        Jika jam pengumpulan
-        <strong>kurang dari atau sama dengan 15</strong>,
-        tampilkan:
-      </p>
-
-      <p>
-        <strong>Tugas diterima</strong>
-      </p>
-
-      <p>
-        Jika lebih dari 15, tampilkan:
-      </p>
-
-      <p>
-        <strong>Tugas terlambat</strong>
-      </p>
+      <textarea
+        id="jawaban1"
+        placeholder="Tuliskan kode Python di sini..."
+        spellcheck="false"
+      ></textarea>
 
     </div>
 
 
-    <textarea
-      id="jawaban2"
-      placeholder="Tuliskan kode Python di sini..."
-      spellcheck="false"
-    ></textarea>
+    <!-- ==================================================
+         SOAL 2
+    ================================================== -->
 
-  </div>
+    <div class="question">
+
+      <h3>
+        Soal 2 — Batas Waktu Pengumpulan
+      </h3>
+
+      <div class="case">
+
+        <p>
+          Buatlah program Python yang meminta pengguna
+          memasukkan jam pengumpulan tugas.
+        </p>
+
+        <p>
+          Jika jam pengumpulan
+          <strong>kurang dari atau sama dengan 15</strong>,
+          tampilkan:
+        </p>
+
+        <p>
+          <strong>Tugas diterima</strong>
+        </p>
+
+        <p>
+          Jika lebih dari 15, tampilkan:
+        </p>
+
+        <p>
+          <strong>Tugas terlambat</strong>
+        </p>
+
+      </div>
 
 
-
-  <!-- ==================================================
-       SOAL 3
-  ================================================== -->
-
-  <div class="question">
-
-    <h3>
-      Soal 3 — Jumlah Buku
-    </h3>
-
-
-    <div class="case">
-
-      <p>
-        Buatlah program Python yang meminta pengguna
-        memasukkan jumlah buku.
-      </p>
-
-      <p>
-        Jika jumlah buku
-        <strong>lebih dari atau sama dengan 3</strong>,
-        tampilkan:
-      </p>
-
-      <p>
-        <strong>Buku sudah cukup</strong>
-      </p>
-
-      <p>
-        Jika kurang dari 3, tampilkan:
-      </p>
-
-      <p>
-        <strong>Buku masih kurang</strong>
-      </p>
+      <textarea
+        id="jawaban2"
+        placeholder="Tuliskan kode Python di sini..."
+        spellcheck="false"
+      ></textarea>
 
     </div>
 
 
-    <textarea
-      id="jawaban3"
-      placeholder="Tuliskan kode Python di sini..."
-      spellcheck="false"
-    ></textarea>
+    <!-- ==================================================
+         SOAL 3
+    ================================================== -->
+
+    <div class="question">
+
+      <h3>
+        Soal 3 — Jumlah Buku
+      </h3>
+
+      <div class="case">
+
+        <p>
+          Buatlah program Python yang meminta pengguna
+          memasukkan jumlah buku.
+        </p>
+
+        <p>
+          Jika jumlah buku
+          <strong>lebih dari atau sama dengan 3</strong>,
+          tampilkan:
+        </p>
+
+        <p>
+          <strong>Buku sudah cukup</strong>
+        </p>
+
+        <p>
+          Jika kurang dari 3, tampilkan:
+        </p>
+
+        <p>
+          <strong>Buku masih kurang</strong>
+        </p>
+
+      </div>
+
+
+      <textarea
+        id="jawaban3"
+        placeholder="Tuliskan kode Python di sini..."
+        spellcheck="false"
+      ></textarea>
+
+    </div>
+
+
+    <div
+      id="quizMessage"
+      class="status-message"
+    ></div>
+
+
+    <button
+      class="btn-primary"
+      onclick="kirimJawaban(false)"
+    >
+      Kirim Jawaban
+    </button>
 
   </div>
-
-
-
-  <div
-    id="quizMessage"
-    class="status-message"
-  ></div>
-
-
-  <button
-    class="btn-primary"
-    onclick="kirimJawaban(false)"
-  >
-    Kirim Jawaban
-  </button>
 
 </div>
-
-</div>
-
 
 
 <!-- ==================================================
@@ -940,7 +634,7 @@ button {
 
 
   <!-- ==================================================
-       EVALUASI JAWABAN
+       EVALUASI
   ================================================== -->
 
   <div
@@ -950,11 +644,13 @@ button {
 
     <div class="evaluasi-intro">
 
-      <strong>🔎 Evaluasi Jawaban</strong>
+      <strong>
+        🔎 Evaluasi Jawaban
+      </strong>
 
       <p>
         Perhatikan bagian yang masih perlu diperbaiki.
-        Evaluasi ini membantu kamu mengetahui kesalahan
+        Evaluasi membantu kamu mengetahui kesalahan
         penulisan sintaks Python.
       </p>
 
@@ -971,16 +667,16 @@ button {
 </div>
 
 
-
 <script>
 
 
 /* =====================================================
    URL APPS SCRIPT
+   JANGAN DIUBAH
 ===================================================== */
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyTxdv5z62Zkd8WcI8hSr9wicbx8YaoR8WK7COppuvZKvbxtw6acO6s1veTi25jvmTKVw/exec";
+  "https://script.google.com/macros/s/AKfycbyTxdv5z62ZkdW8C8IhSr9wicbx8YaoR8WK7COppuvZKvbxtw6acO6s1veTi25jvmTKVw/exec";
 
 
 /* =====================================================
@@ -1069,7 +765,7 @@ function sembunyikanPesan(id) {
 
 
 /* =====================================================
-   JSONP
+   JSONP KE APPS SCRIPT
 ===================================================== */
 
 function panggilAppsScript(
@@ -1092,8 +788,7 @@ function panggilAppsScript(
     document.createElement("script");
 
 
-  let selesai =
-    false;
+  let selesai = false;
 
 
   const timeout =
@@ -1108,11 +803,10 @@ function panggilAppsScript(
 
         cleanup();
 
-
         if (gagal) {
 
           gagal(
-            "Waktu koneksi ke Google Apps Script habis. Periksa URL /exec dan deployment Apps Script."
+            "Waktu koneksi ke Google Apps Script habis. Periksa deployment Web App."
           );
 
         }
@@ -1134,7 +828,6 @@ function panggilAppsScript(
       clearTimeout(timeout);
 
       cleanup();
-
 
       if (success) {
         success(data);
@@ -1172,11 +865,10 @@ function panggilAppsScript(
 
       cleanup();
 
-
       if (gagal) {
 
         gagal(
-          "Tidak dapat terhubung ke Google Apps Script. Pastikan URL /exec benar dan akses Web App diatur ke Anyone."
+          "Tidak dapat terhubung ke Google Apps Script. Pastikan Web App menggunakan akses Anyone."
         );
 
       }
@@ -1277,23 +969,6 @@ function mulaiKuis() {
   }
 
 
-  if (
-    APPS_SCRIPT_URL.includes(
-      "https://script.google.com/macros/s/AKfycbz6Z6nh2Xz88B9ld_-9gdEaoC7LglxwhA_iVnApvuEgFVtsJurG_qyZWpFXzzRjQe1lkw/exec"
-    )
-  ) {
-
-    tampilkanPesan(
-      "loginMessage",
-      "URL Apps Script belum dimasukkan ke dalam kode.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
   tampilkanLoading(
     "Sedang memeriksa data siswa..."
   );
@@ -1304,13 +979,11 @@ function mulaiKuis() {
     "cekSiswa",
 
     {
-
       nama:
         namaSiswa,
 
       kelas:
         kelasSiswa
-
     },
 
 
@@ -1325,6 +998,7 @@ function mulaiKuis() {
       ) {
 
         tampilkanPesan(
+
           "loginMessage",
 
           hasil &&
@@ -1333,6 +1007,7 @@ function mulaiKuis() {
             : "Data siswa tidak dapat diperiksa.",
 
           "error"
+
         );
 
         return;
@@ -1406,9 +1081,7 @@ function masukFullscreen() {
         }
       )
       .catch(
-        function() {
-
-        }
+        function() {}
       );
 
   }
@@ -1417,7 +1090,7 @@ function masukFullscreen() {
 
 
 /* =====================================================
-   DETEKSI FULLSCREEN
+   DETEKSI KELUAR FULLSCREEN
 ===================================================== */
 
 document.addEventListener(
@@ -1459,9 +1132,7 @@ document.addEventListener(
 
 
       document
-        .getElementById(
-          "fullscreenText"
-        )
+        .getElementById("fullscreenText")
         .textContent =
         jumlahKeluarFullscreen;
 
@@ -1503,17 +1174,16 @@ document.addEventListener(
 
 
       document
-        .getElementById(
-          "pindahTabText"
-        )
+        .getElementById("pindahTabText")
         .textContent =
         jumlahPindahTab;
 
 
       /*
-       * LANGSUNG SUBMIT
+       * SUBMIT OTOMATIS
        *
-       * Tidak menunggu siswa kembali.
+       * Tidak memeriksa apakah
+       * semua soal sudah diisi.
        */
 
       kirimJawaban(true);
@@ -1531,9 +1201,7 @@ document.addEventListener(
 document.addEventListener(
   "copy",
   function(event) {
-
     event.preventDefault();
-
   }
 );
 
@@ -1541,9 +1209,7 @@ document.addEventListener(
 document.addEventListener(
   "cut",
   function(event) {
-
     event.preventDefault();
-
   }
 );
 
@@ -1551,9 +1217,7 @@ document.addEventListener(
 document.addEventListener(
   "paste",
   function(event) {
-
     event.preventDefault();
-
   }
 );
 
@@ -1561,15 +1225,14 @@ document.addEventListener(
 document.addEventListener(
   "contextmenu",
   function(event) {
-
     event.preventDefault();
-
   }
 );
 
 
 /* =====================================================
-   CEK KELENGKAPAN JAWABAN
+   CEK KELENGKAPAN
+   HANYA UNTUK SUBMIT MANUAL
 ===================================================== */
 
 function cekKelengkapanJawaban() {
@@ -1653,21 +1316,34 @@ function tampilkanEvaluasi(
     );
 
 
-  container.innerHTML =
-    "";
+  container.innerHTML = "";
 
+
+  /*
+   * Jika server tidak mengirim
+   * array evaluasi
+   */
 
   if (
-    !evaluasi ||
     !Array.isArray(evaluasi)
   ) {
 
     container.innerHTML = `
-      <div class="evaluasi-box">
+
+      <div class="evaluasi-box evaluasi-salah">
+
+        <h3>
+          ⚠️ Evaluasi Belum Dapat Ditampilkan
+        </h3>
+
         <p>
-          Evaluasi jawaban belum tersedia.
+          Nilai sudah berhasil disimpan,
+          tetapi data evaluasi dari server
+          belum diterima oleh halaman.
         </p>
+
       </div>
+
     `;
 
     return;
@@ -1675,11 +1351,17 @@ function tampilkanEvaluasi(
   }
 
 
+  /*
+   * Tampilkan evaluasi setiap soal
+   */
+
   evaluasi.forEach(
     function(item) {
 
       const kotak =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
 
       kotak.className =
@@ -1687,6 +1369,10 @@ function tampilkanEvaluasi(
           ? "evaluasi-box evaluasi-benar"
           : "evaluasi-box evaluasi-salah";
 
+
+      /* =============================================
+         JAWABAN BENAR
+      ============================================= */
 
       if (item.benar) {
 
@@ -1697,33 +1383,42 @@ function tampilkanEvaluasi(
           </h3>
 
           <p>
-            Jawaban kamu sudah sesuai dengan
-            struktur dan sintaks Python yang
-            diperlukan pada soal ini.
+            Jawaban kamu sudah sesuai
+            dengan struktur dan sintaks
+            Python yang diperlukan.
           </p>
 
         `;
 
       }
 
+
+      /* =============================================
+         JAWABAN SALAH
+      ============================================= */
+
       else {
 
-        let daftarKesalahan =
-          "";
+        let daftarKesalahan = "";
 
 
         if (
-          item.kesalahan &&
+
+          Array.isArray(item.kesalahan) &&
+
           item.kesalahan.length > 0
+
         ) {
 
           item.kesalahan.forEach(
             function(error) {
 
               daftarKesalahan += `
+
                 <li>
                   ${escapeHTML(error)}
                 </li>
+
               `;
 
             }
@@ -1734,10 +1429,12 @@ function tampilkanEvaluasi(
         else {
 
           daftarKesalahan = `
+
             <li>
-              Masih terdapat bagian kode yang
-              belum sesuai dengan ketentuan soal.
+              Periksa kembali penulisan
+              sintaks dan struktur kode.
             </li>
+
           `;
 
         }
@@ -1746,11 +1443,12 @@ function tampilkanEvaluasi(
         kotak.innerHTML = `
 
           <h3>
-            Soal ${item.soal} — ❌ Perlu Diperbaiki
+            Soal ${item.soal}
+            — ❌ Perlu Diperbaiki
           </h3>
 
           <p class="feedback-title">
-            🔎 Bagian yang perlu diperiksa:
+            🔎 Kesalahan yang terdeteksi:
           </p>
 
           <ul>
@@ -1758,9 +1456,20 @@ function tampilkanEvaluasi(
           </ul>
 
           <p>
-            💡 Coba periksa kembali tanda baca,
-            operator, penulisan variabel,
-            struktur if-else, dan indentation.
+
+            💡 Periksa kembali:
+
+            <strong>
+              tanda petik,
+              tanda titik dua (:),
+              kurung (),
+              nama variabel,
+              operator,
+              if-else,
+              print,
+              dan indentation.
+            </strong>
+
           </p>
 
         `;
@@ -1779,28 +1488,33 @@ function tampilkanEvaluasi(
 
 
 /* =====================================================
-   PENGAMAN TAMPILAN TEKS
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(teks) {
 
   return String(teks || "")
+
     .replace(
       /&/g,
       "&amp;"
     )
+
     .replace(
       /</g,
       "&lt;"
     )
+
     .replace(
       />/g,
       "&gt;"
     )
+
     .replace(
       /"/g,
       "&quot;"
     )
+
     .replace(
       /'/g,
       "&#039;"
@@ -1832,63 +1546,56 @@ function kirimJawaban(
   );
 
 
-  /*
-   * Pastikan semua soal terisi.
-   */
-
-  if (
-    !cekKelengkapanJawaban()
-  ) {
-
-    /*
-     * Jika submit otomatis tetapi ada
-     * jawaban kosong, tetap tidak boleh
-     * mengirim jawaban kosong.
-     */
-
-    return;
-
-  }
-
-
-  /*
-   * Jika tombol Kirim Jawaban ditekan,
-   * tampilkan konfirmasi.
-   *
-   * Jika otomatis karena pindah tab
-   * atau keluar fullscreen,
-   * langsung submit.
-   */
+  /* =================================================
+     SUBMIT MANUAL
+     Semua soal wajib diisi.
+  ================================================= */
 
   if (!otomatis) {
 
-    const yakin =
-      confirm(
-        "Apakah Anda yakin ingin mengirim jawaban?\n\n" +
-        "Jawaban hanya dapat dikirim satu kali."
-      );
-
-
-    if (!yakin) {
+    if (
+      !cekKelengkapanJawaban()
+    ) {
 
       return;
 
     }
 
+
+    const yakin =
+      confirm(
+
+        "Apakah Anda yakin ingin mengirim jawaban?\n\n" +
+
+        "Jawaban hanya dapat dikirim satu kali."
+
+      );
+
+
+    if (!yakin) {
+      return;
+    }
+
   }
 
 
-  sedangMemproses =
-    true;
+  /* =================================================
+     MULAI PROSES SUBMIT
+  ================================================= */
 
-  sedangSubmit =
-    true;
+  sedangMemproses = true;
+
+  sedangSubmit = true;
 
 
   tampilkanLoading(
+
     otomatis
+
       ? "Aktivitas terdeteksi. Jawaban sedang dikirim..."
+
       : "Sedang menyimpan jawaban..."
+
   );
 
 
@@ -1909,6 +1616,10 @@ function kirimJawaban(
       .getElementById("jawaban3")
       .value;
 
+
+  /* =================================================
+     KIRIM KE APPS SCRIPT
+  ================================================= */
 
   panggilAppsScript(
 
@@ -1940,6 +1651,10 @@ function kirimJawaban(
     },
 
 
+    /* =================================================
+       BERHASIL
+    ================================================= */
+
     function(hasil) {
 
       sedangMemproses =
@@ -1950,8 +1665,11 @@ function kirimJawaban(
 
 
       if (
+
         !hasil ||
+
         !hasil.berhasil
+
       ) {
 
         sedangSubmit =
@@ -1959,14 +1677,18 @@ function kirimJawaban(
 
 
         tampilkanPesan(
+
           "quizMessage",
 
           hasil &&
           hasil.pesan
+
             ? hasil.pesan
+
             : "Jawaban tidak berhasil dikirim.",
 
           "error"
+
         );
 
 
@@ -1975,79 +1697,82 @@ function kirimJawaban(
       }
 
 
-      sudahKirim =
-        true;
+      /* -----------------------------------------------
+         TANDAI SUDAH DIKIRIM
+      ----------------------------------------------- */
+
+      sudahKirim = true;
 
 
-      /*
-       * Sembunyikan halaman kuis.
-       */
+      /* -----------------------------------------------
+         SEMBUNYIKAN AKTIVITAS
+      ----------------------------------------------- */
 
       document
-        .getElementById(
-          "activityBar"
-        )
+        .getElementById("activityBar")
         .classList
         .add("hidden");
 
 
+      /* -----------------------------------------------
+         SEMBUNYIKAN KUIS
+      ----------------------------------------------- */
+
       document
-        .getElementById(
-          "quizPage"
-        )
+        .getElementById("quizPage")
         .classList
         .add("hidden");
 
 
-      /*
-       * Tampilkan halaman hasil.
-       */
+      /* -----------------------------------------------
+         TAMPILKAN HASIL
+      ----------------------------------------------- */
 
       document
-        .getElementById(
-          "resultPage"
-        )
+        .getElementById("resultPage")
         .classList
         .remove("hidden");
 
 
-      /*
-       * Tampilkan nilai.
-       */
+      /* -----------------------------------------------
+         NILAI
+      ----------------------------------------------- */
 
       document
-        .getElementById(
-          "nilai"
-        )
+        .getElementById("nilai")
         .textContent =
         hasil.nilai;
 
 
+      /* -----------------------------------------------
+         PESAN
+      ----------------------------------------------- */
+
       document
-        .getElementById(
-          "resultMessage"
-        )
+        .getElementById("resultMessage")
         .textContent =
         hasil.pesan;
 
 
-      /*
-       * Tampilkan evaluasi kesalahan.
-       */
+      /* -----------------------------------------------
+         EVALUASI
+      ----------------------------------------------- */
 
       tampilkanEvaluasi(
         hasil.evaluasi
       );
 
 
-      /*
-       * Keluar fullscreen setelah
-       * jawaban berhasil disimpan.
-       */
+      /* -----------------------------------------------
+         KELUAR FULLSCREEN
+      ----------------------------------------------- */
 
       if (
+
         document.fullscreenElement &&
+
         document.exitFullscreen
+
       ) {
 
         document
@@ -2065,6 +1790,10 @@ function kirimJawaban(
     },
 
 
+    /* =================================================
+       GAGAL
+    ================================================= */
+
     function(error) {
 
       sedangMemproses =
@@ -2073,14 +1802,17 @@ function kirimJawaban(
       sedangSubmit =
         false;
 
-
       sembunyikanLoading();
 
 
       tampilkanPesan(
+
         "quizMessage",
+
         error,
+
         "error"
+
       );
 
     }
@@ -2095,4 +1827,3 @@ function kirimJawaban(
 </body>
 
 </html>
-```
