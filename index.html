@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,201 +12,432 @@
 
 <title>Kuis KKA - Logika IF-ELSE Python</title>
 
+
 <style>
 
 * {
   box-sizing: border-box;
 }
 
+
 body {
+
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #1f2937;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  background:
+    #f4f7fb;
+
+  color:
+    #1f2937;
+
 }
+
 
 .container {
+
   width: 92%;
+
   max-width: 850px;
-  margin: 30px auto;
+
+  margin:
+    30px auto;
+
 }
+
 
 .card {
-  background: white;
-  border-radius: 18px;
-  padding: 28px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
+
+  background:
+    white;
+
+  border-radius:
+    18px;
+
+  padding:
+    28px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(0,0,0,0.08);
+
+  margin-bottom:
+    20px;
+
 }
+
 
 .header {
-  text-align: center;
+
+  text-align:
+    center;
+
 }
+
 
 .header h1 {
-  margin-bottom: 8px;
+
+  margin-bottom:
+    8px;
+
 }
+
 
 .header p {
-  color: #6b7280;
+
+  color:
+    #6b7280;
+
 }
 
+
 label {
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 7px;
-  font-weight: bold;
+
+  display:
+    block;
+
+  margin-top:
+    15px;
+
+  margin-bottom:
+    7px;
+
+  font-weight:
+    bold;
+
 }
+
 
 input,
 select,
 textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  font-size: 15px;
+
+  width:
+    100%;
+
+  padding:
+    12px;
+
+  border:
+    1px solid #d1d5db;
+
+  border-radius:
+    10px;
+
+  font-size:
+    15px;
+
 }
+
 
 textarea {
-  min-height: 190px;
-  resize: vertical;
-  font-family: Consolas, monospace;
-  line-height: 1.5;
+
+  min-height:
+    190px;
+
+  resize:
+    vertical;
+
+  font-family:
+    Consolas,
+    monospace;
+
+  line-height:
+    1.5;
+
 }
+
 
 button {
-  border: none;
-  border-radius: 10px;
-  padding: 13px 20px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+
+  border:
+    none;
+
+  border-radius:
+    10px;
+
+  padding:
+    13px 20px;
+
+  font-size:
+    15px;
+
+  font-weight:
+    bold;
+
+  cursor:
+    pointer;
+
 }
+
 
 .btn-primary {
-  width: 100%;
-  margin-top: 20px;
-  background: #2563eb;
-  color: white;
+
+  width:
+    100%;
+
+  margin-top:
+    20px;
+
+  background:
+    #2563eb;
+
+  color:
+    white;
+
 }
+
 
 .btn-primary:hover {
-  background: #1d4ed8;
+
+  background:
+    #1d4ed8;
+
 }
+
 
 .hidden {
-  display: none !important;
+
+  display:
+    none !important;
+
 }
+
 
 .warning {
-  background: #fff7ed;
-  border-left: 5px solid #f97316;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 15px;
+
+  background:
+    #fff7ed;
+
+  border-left:
+    5px solid #f97316;
+
+  padding:
+    15px;
+
+  border-radius:
+    10px;
+
+  margin-top:
+    15px;
+
 }
+
 
 .activity {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: #111827;
-  color: white;
-  padding: 12px;
-  text-align: center;
-  font-weight: bold;
+
+  position:
+    sticky;
+
+  top:
+    0;
+
+  z-index:
+    20;
+
+  background:
+    #111827;
+
+  color:
+    white;
+
+  padding:
+    12px;
+
+  text-align:
+    center;
+
+  font-weight:
+    bold;
+
 }
+
 
 .question {
-  margin-top: 25px;
-  padding: 20px;
-  border: 1px solid #e5e7eb;
-  border-radius: 15px;
-  background: #fafafa;
+
+  margin-top:
+    25px;
+
+  padding:
+    20px;
+
+  border:
+    1px solid #e5e7eb;
+
+  border-radius:
+    15px;
+
+  background:
+    #fafafa;
+
 }
+
 
 .question h3 {
-  margin-top: 0;
+
+  margin-top:
+    0;
+
 }
+
 
 .case {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border-left: 5px solid #2563eb;
+
+  background:
+    white;
+
+  padding:
+    15px;
+
+  border-radius:
+    10px;
+
+  margin-bottom:
+    15px;
+
+  border-left:
+    5px solid #2563eb;
+
 }
+
 
 .result {
-  text-align: center;
+
+  text-align:
+    center;
+
 }
+
 
 .nilai {
-  font-size: 60px;
-  font-weight: bold;
-  margin: 20px 0;
+
+  font-size:
+    60px;
+
+  font-weight:
+    bold;
+
+  margin:
+    20px 0;
+
 }
+
 
 .loading {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.97);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  background:
+    rgba(255,255,255,0.97);
+
+  z-index:
+    9999;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  text-align:
+    center;
+
 }
+
 
 .loading-box {
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+
+  background:
+    white;
+
+  padding:
+    30px;
+
+  border-radius:
+    18px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(0,0,0,0.12);
+
 }
+
 
 .status-message {
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 10px;
-  display: none;
+
+  margin-top:
+    15px;
+
+  padding:
+    12px;
+
+  border-radius:
+    10px;
+
+  display:
+    none;
+
 }
+
 
 .error {
-  background: #fee2e2;
-  color: #991b1b;
+
+  background:
+    #fee2e2;
+
+  color:
+    #991b1b;
+
 }
+
 
 .success {
-  background: #dcfce7;
-  color: #166534;
+
+  background:
+    #dcfce7;
+
+  color:
+    #166534;
+
 }
 
-.info {
-  background: #dbeafe;
-  color: #1e40af;
-}
-
-code {
-  background: #e5e7eb;
-  padding: 2px 5px;
-  border-radius: 4px;
-}
 
 @media(max-width:600px) {
 
   .container {
-    width: 95%;
-    margin: 15px auto;
+
+    width:
+      95%;
+
+    margin:
+      15px auto;
+
   }
+
 
   .card {
-    padding: 18px;
+
+    padding:
+      18px;
+
   }
 
+
   .nilai {
-    font-size: 48px;
+
+    font-size:
+      48px;
+
   }
 
 }
@@ -216,6 +448,7 @@ code {
 
 
 <body>
+
 
 <!-- ==================================================
      LOADING
@@ -228,7 +461,7 @@ code {
 
   <div class="loading-box">
 
-    <h2>⏳ Mohon Tunggu</h2>
+    <h2>Mohon Tunggu</h2>
 
     <p id="loadingText">
       Sedang memeriksa data siswa...
@@ -237,6 +470,7 @@ code {
   </div>
 
 </div>
+
 
 
 <!-- ==================================================
@@ -258,6 +492,7 @@ code {
   <span id="fullscreenText">0</span>
 
 </div>
+
 
 
 <div class="container">
@@ -362,6 +597,7 @@ code {
 </div>
 
 
+
 <!-- ==================================================
      KUIS
 ================================================== -->
@@ -406,7 +642,7 @@ code {
 
       <p>
         Jika kondisi lampu adalah
-        <code>nyala</code>, tampilkan:
+        <strong>nyala</strong>, tampilkan:
       </p>
 
       <p>
@@ -421,6 +657,12 @@ code {
         <strong>Lampu sedang mati</strong>
       </p>
 
+      <p>
+        Nama variabel boleh menggunakan nama sederhana
+        seperti <code>lampu</code> atau nama gabungan
+        seperti <code>periksa_lampu</code>.
+      </p>
+
     </div>
 
 
@@ -431,6 +673,7 @@ code {
     ></textarea>
 
   </div>
+
 
 
   <!-- SOAL 2 -->
@@ -467,6 +710,12 @@ code {
         <strong>Tugas terlambat</strong>
       </p>
 
+      <p>
+        Nama variabel boleh ditentukan sendiri.
+        Jika terdiri dari beberapa kata, gunakan
+        underscore, misalnya <code>jam_pengumpulan</code>.
+      </p>
+
     </div>
 
 
@@ -477,6 +726,7 @@ code {
     ></textarea>
 
   </div>
+
 
 
   <!-- SOAL 3 -->
@@ -514,11 +764,9 @@ code {
       </p>
 
       <p>
-        <strong>Catatan:</strong>
-        Jika nama variabel terdiri dari beberapa kata,
-        gunakan tanda underscore.
-        Contoh:
-        <code>jumlah_buku</code>
+        Nama variabel boleh ditentukan sendiri.
+        Jika terdiri dari beberapa kata, gunakan
+        underscore, misalnya <code>jumlah_buku</code>.
       </p>
 
     </div>
@@ -533,6 +781,7 @@ code {
   </div>
 
 
+
   <div
     id="quizMessage"
     class="status-message"
@@ -541,7 +790,7 @@ code {
 
   <button
     class="btn-primary"
-    onclick="kirimJawaban()"
+    onclick="kirimJawaban(false)"
   >
     Kirim Jawaban
   </button>
@@ -549,6 +798,7 @@ code {
 </div>
 
 </div>
+
 
 
 <!-- ==================================================
@@ -568,12 +818,14 @@ code {
     Jawaban Anda telah dikirim.
   </p>
 
+
   <div
     id="nilai"
     class="nilai"
   >
     0
   </div>
+
 
   <p id="resultMessage"></p>
 
@@ -583,22 +835,16 @@ code {
 </div>
 
 
+
 <script>
 
+
 /* =====================================================
-   KONFIGURASI APPS SCRIPT
+   URL APPS SCRIPT
 ===================================================== */
 
-/*
-  GANTI bagian di bawah ini dengan URL Web App Apps Script
-  yang berakhiran /exec.
-
-  Contoh:
-  https://script.google.com/macros/s/XXXXXXXXXXXX/exec
-*/
-
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbz0Y0zWRwYfKwOdxsGuS7BKUhZMtP2t7_pmXyPXvp4oEg62SiKlRfhLvurmyxWXNDLPeg/exec";
+  "PASTE_URL_APPS_SCRIPT_ANDA_DI_SINI";
 
 
 /* =====================================================
@@ -606,26 +852,44 @@ const APPS_SCRIPT_URL =
 ===================================================== */
 
 let namaSiswa = "";
+
 let kelasSiswa = "";
 
 let jumlahPindahTab = 0;
+
 let jumlahKeluarFullscreen = 0;
 
 let sudahKirim = false;
+
 let sedangMemproses = false;
 
 
+/*
+ * Digunakan untuk membedakan:
+ *
+ * 1. Siswa menekan ESC
+ * 2. Siswa keluar fullscreen karena proses submit
+ */
+
+let sedangSubmit = false;
+
+
 /* =====================================================
-   HELPER
+   LOADING
 ===================================================== */
 
 function tampilkanLoading(teks) {
 
-  document.getElementById("loadingText").textContent = teks;
+  document
+    .getElementById("loadingText")
+    .textContent = teks;
+
 
   document
     .getElementById("loading")
-    .classList.remove("hidden");
+    .classList
+    .remove("hidden");
+
 }
 
 
@@ -633,9 +897,15 @@ function sembunyikanLoading() {
 
   document
     .getElementById("loading")
-    .classList.add("hidden");
+    .classList
+    .add("hidden");
+
 }
 
+
+/* =====================================================
+   PESAN
+===================================================== */
 
 function tampilkanPesan(
   id,
@@ -643,14 +913,22 @@ function tampilkanPesan(
   tipe
 ) {
 
-  const el = document.getElementById(id);
+  const el =
+    document.getElementById(id);
 
-  el.textContent = pesan;
+
+  el.textContent =
+    pesan;
+
 
   el.className =
-    "status-message " + tipe;
+    "status-message " +
+    tipe;
 
-  el.style.display = "block";
+
+  el.style.display =
+    "block";
+
 }
 
 
@@ -658,21 +936,15 @@ function sembunyikanPesan(id) {
 
   document
     .getElementById(id)
-    .style.display = "none";
+    .style.display =
+    "none";
+
 }
 
 
 /* =====================================================
    JSONP
 ===================================================== */
-
-/*
-  Fungsi ini membuat permintaan ke Apps Script
-  tanpa menggunakan fetch/CORS.
-
-  GitHub dapat memanggil Apps Script menggunakan
-  elemen <script>.
-*/
 
 function panggilAppsScript(
   action,
@@ -685,7 +957,9 @@ function panggilAppsScript(
     "callback_" +
     Date.now() +
     "_" +
-    Math.floor(Math.random() * 100000);
+    Math.floor(
+      Math.random() * 100000
+    );
 
 
   const script =
@@ -693,17 +967,23 @@ function panggilAppsScript(
 
 
   const timeout =
-    setTimeout(function() {
+    setTimeout(
+      function() {
 
-      cleanup();
+        cleanup();
 
-      if (gagal) {
-        gagal(
-          "Waktu koneksi ke server habis."
-        );
-      }
 
-    }, 15000);
+        if (gagal) {
+
+          gagal(
+            "Waktu koneksi ke server habis."
+          );
+
+        }
+
+      },
+      15000
+    );
 
 
   window[callbackName] =
@@ -712,6 +992,7 @@ function panggilAppsScript(
       clearTimeout(timeout);
 
       cleanup();
+
 
       if (success) {
         success(data);
@@ -723,10 +1004,17 @@ function panggilAppsScript(
   function cleanup() {
 
     if (script.parentNode) {
-      script.parentNode.removeChild(script);
+
+      script.parentNode
+        .removeChild(script);
+
     }
 
-    delete window[callbackName];
+
+    delete window[
+      callbackName
+    ];
+
   }
 
 
@@ -737,10 +1025,13 @@ function panggilAppsScript(
 
       cleanup();
 
+
       if (gagal) {
+
         gagal(
           "Tidak dapat terhubung ke Google Apps Script."
         );
+
       }
 
     };
@@ -755,21 +1046,25 @@ function panggilAppsScript(
     action
   );
 
+
   query.append(
     "callback",
     callbackName
   );
 
 
-  Object.keys(parameter || {})
-    .forEach(function(key) {
+  Object.keys(
+    parameter || {}
+  ).forEach(
+    function(key) {
 
       query.append(
         key,
         parameter[key]
       );
 
-    });
+    }
+  );
 
 
   script.src =
@@ -778,7 +1073,10 @@ function panggilAppsScript(
     query.toString();
 
 
-  document.body.appendChild(script);
+  document
+    .body
+    .appendChild(script);
+
 }
 
 
@@ -788,13 +1086,17 @@ function panggilAppsScript(
 
 function mulaiKuis() {
 
-  sembunyikanPesan("loginMessage");
+  sembunyikanPesan(
+    "loginMessage"
+  );
+
 
   namaSiswa =
     document
       .getElementById("nama")
       .value
       .trim();
+
 
   kelasSiswa =
     document
@@ -811,6 +1113,7 @@ function mulaiKuis() {
     );
 
     return;
+
   }
 
 
@@ -823,21 +1126,23 @@ function mulaiKuis() {
     );
 
     return;
+
   }
 
 
   if (
     APPS_SCRIPT_URL ===
-    "PASTE_URL_APPS_SCRIPT_ANDA_DI_SINI"
+    "https://script.google.com/macros/s/AKfycbz_ULW3QtvtBqVjnGuhI1DskYbgOG3GzdNWEQw4PTq1-PfWDNyYhDBu5SgXksmv0aoRaw/exec"
   ) {
 
     tampilkanPesan(
       "loginMessage",
-      "URL Apps Script belum dimasukkan ke index.html.",
+      "URL Apps Script belum dimasukkan.",
       "error"
     );
 
     return;
+
   }
 
 
@@ -847,53 +1152,71 @@ function mulaiKuis() {
 
 
   panggilAppsScript(
+
     "cekSiswa",
+
     {
-      nama: namaSiswa,
-      kelas: kelasSiswa
+      nama:
+        namaSiswa,
+
+      kelas:
+        kelasSiswa
     },
+
 
     function(hasil) {
 
       sembunyikanLoading();
 
 
-      if (!hasil || !hasil.berhasil) {
+      if (
+        !hasil ||
+        !hasil.berhasil
+      ) {
 
         tampilkanPesan(
           "loginMessage",
-          hasil && hasil.pesan
+
+          hasil &&
+          hasil.pesan
             ? hasil.pesan
             : "Data siswa tidak dapat diperiksa.",
+
           "error"
         );
 
         return;
+
       }
 
 
       document
         .getElementById("loginPage")
-        .classList.add("hidden");
+        .classList
+        .add("hidden");
 
 
       document
         .getElementById("quizPage")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
 
       document
         .getElementById("activityBar")
-        .classList.remove("hidden");
+        .classList
+        .remove("hidden");
 
 
       masukFullscreen();
 
     },
 
+
     function(error) {
 
       sembunyikanLoading();
+
 
       tampilkanPesan(
         "loginMessage",
@@ -902,7 +1225,9 @@ function mulaiKuis() {
       );
 
     }
+
   );
+
 }
 
 
@@ -912,7 +1237,9 @@ function mulaiKuis() {
 
 function masukFullscreen() {
 
-  const element = document.documentElement;
+  const element =
+    document.documentElement;
+
 
   if (
     element.requestFullscreen
@@ -920,12 +1247,9 @@ function masukFullscreen() {
 
     element
       .requestFullscreen()
-      .catch(function() {
-
-        // Browser dapat menolak fullscreen.
-        // Kuis tetap dapat digunakan.
-
-      });
+      .catch(
+        function() {}
+      );
 
   }
 
@@ -933,25 +1257,55 @@ function masukFullscreen() {
 
 
 /* =====================================================
-   AKTIVITAS FULLSCREEN
+   DETEKSI KELUAR FULLSCREEN
 ===================================================== */
 
 document.addEventListener(
   "fullscreenchange",
   function() {
 
+
+    /*
+     * Jika kuis sedang aktif
+     * dan fullscreen keluar,
+     * berarti siswa menekan ESC
+     * atau keluar fullscreen.
+     */
+
     if (
+
       !document.fullscreenElement &&
+
       !sudahKirim &&
-      !sedangMemproses
+
+      !sedangSubmit &&
+
+      !sedangMemproses &&
+
+      !document
+        .getElementById("quizPage")
+        .classList
+        .contains("hidden")
+
     ) {
+
 
       jumlahKeluarFullscreen++;
 
+
       document
-        .getElementById("fullscreenText")
+        .getElementById(
+          "fullscreenText"
+        )
         .textContent =
         jumlahKeluarFullscreen;
+
+
+      /*
+       * LANGSUNG SUBMIT
+       */
+
+      kirimJawaban(true);
 
     }
 
@@ -960,27 +1314,38 @@ document.addEventListener(
 
 
 /* =====================================================
-   AKTIVITAS PINDAH TAB
+   DETEKSI PINDAH TAB
 ===================================================== */
 
 document.addEventListener(
   "visibilitychange",
   function() {
 
+
     if (
+
       document.hidden &&
+
       !sudahKirim &&
+
+      !sedangSubmit &&
+
       !sedangMemproses &&
+
       !document
         .getElementById("quizPage")
         .classList
         .contains("hidden")
+
     ) {
 
       jumlahPindahTab++;
 
+
       document
-        .getElementById("pindahTabText")
+        .getElementById(
+          "pindahTabText"
+        )
         .textContent =
         jumlahPindahTab;
 
@@ -991,7 +1356,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   BLOK COPY / PASTE / CUT
+   BLOK COPY / CUT / PASTE
 ===================================================== */
 
 document.addEventListener(
@@ -1035,15 +1400,73 @@ document.addEventListener(
 
 
 /* =====================================================
-   CEK VARIABEL DENGAN SPASI
+   CEK KELENGKAPAN JAWABAN
 ===================================================== */
 
-function adaVariabelSpasi(kode) {
+function cekKelengkapanJawaban() {
 
-  const pola =
-    /^\s*[A-Za-z_][A-Za-z0-9_]*\s+[A-Za-z_][A-Za-z0-9_]*\s*=/m;
+  const jawaban1 =
+    document
+      .getElementById("jawaban1")
+      .value
+      .trim();
 
-  return pola.test(kode);
+
+  const jawaban2 =
+    document
+      .getElementById("jawaban2")
+      .value
+      .trim();
+
+
+  const jawaban3 =
+    document
+      .getElementById("jawaban3")
+      .value
+      .trim();
+
+
+  if (!jawaban1) {
+
+    tampilkanPesan(
+      "quizMessage",
+      "Soal 1 wajib diisi.",
+      "error"
+    );
+
+    return false;
+
+  }
+
+
+  if (!jawaban2) {
+
+    tampilkanPesan(
+      "quizMessage",
+      "Soal 2 wajib diisi.",
+      "error"
+    );
+
+    return false;
+
+  }
+
+
+  if (!jawaban3) {
+
+    tampilkanPesan(
+      "quizMessage",
+      "Soal 3 wajib diisi.",
+      "error"
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
 }
 
 
@@ -1051,11 +1474,81 @@ function adaVariabelSpasi(kode) {
    KIRIM JAWABAN
 ===================================================== */
 
-function kirimJawaban() {
+function kirimJawaban(
+  otomatisKarenaFullscreen
+) {
 
-  if (sudahKirim || sedangMemproses) {
+
+  if (
+    sudahKirim ||
+    sedangMemproses
+  ) {
+
     return;
+
   }
+
+
+  sembunyikanPesan(
+    "quizMessage"
+  );
+
+
+  /*
+   * Cek semua soal.
+   *
+   * Tidak memberikan koreksi
+   * tentang benar/salah kode.
+   */
+
+  if (
+    !cekKelengkapanJawaban()
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * Jika siswa menekan tombol
+   * Kirim Jawaban secara normal,
+   * tampilkan konfirmasi.
+   *
+   * Jika ESC,
+   * langsung kirim tanpa konfirmasi.
+   */
+
+  if (
+    !otomatisKarenaFullscreen
+  ) {
+
+    const yakin =
+      confirm(
+        "Apakah Anda yakin ingin mengirim jawaban?\n\n" +
+        "Jawaban hanya dapat dikirim satu kali."
+      );
+
+
+    if (!yakin) {
+
+      return;
+
+    }
+
+  }
+
+
+  sedangMemproses =
+    true;
+
+  sedangSubmit =
+    true;
+
+
+  tampilkanLoading(
+    "Sedang menyimpan jawaban..."
+  );
 
 
   const jawaban1 =
@@ -1063,10 +1556,12 @@ function kirimJawaban() {
       .getElementById("jawaban1")
       .value;
 
+
   const jawaban2 =
     document
       .getElementById("jawaban2")
       .value;
+
 
   const jawaban3 =
     document
@@ -1074,93 +1569,26 @@ function kirimJawaban() {
       .value;
 
 
-  sembunyikanPesan("quizMessage");
-
-
-  if (
-    !jawaban1.trim() ||
-    !jawaban2.trim() ||
-    !jawaban3.trim()
-  ) {
-
-    tampilkanPesan(
-      "quizMessage",
-      "Semua soal harus dikerjakan sebelum dikirim.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if (adaVariabelSpasi(jawaban1)) {
-
-    tampilkanPesan(
-      "quizMessage",
-      "Soal 1: Nama variabel tidak boleh menggunakan spasi. Gunakan underscore (_).",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if (adaVariabelSpasi(jawaban2)) {
-
-    tampilkanPesan(
-      "quizMessage",
-      "Soal 2: Nama variabel tidak boleh menggunakan spasi. Gunakan underscore (_).",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if (adaVariabelSpasi(jawaban3)) {
-
-    tampilkanPesan(
-      "quizMessage",
-      "Soal 3: Nama variabel tidak boleh menggunakan spasi. Gunakan underscore (_).",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const konfirmasi =
-    confirm(
-      "Apakah Anda yakin ingin mengirim jawaban?\n\n" +
-      "Jawaban hanya dapat dikirim satu kali."
-    );
-
-
-  if (!konfirmasi) {
-    return;
-  }
-
-
-  sedangMemproses = true;
-
-  tampilkanLoading(
-    "Sedang menyimpan jawaban..."
-  );
-
-
   panggilAppsScript(
+
     "submitQuiz",
+
     {
 
-      nama: namaSiswa,
+      nama:
+        namaSiswa,
 
-      kelas: kelasSiswa,
+      kelas:
+        kelasSiswa,
 
-      jawaban1: jawaban1,
+      jawaban1:
+        jawaban1,
 
-      jawaban2: jawaban2,
+      jawaban2:
+        jawaban2,
 
-      jawaban3: jawaban3,
+      jawaban3:
+        jawaban3,
 
       pindahTab:
         jumlahPindahTab,
@@ -1173,7 +1601,9 @@ function kirimJawaban() {
 
     function(hasil) {
 
-      sedangMemproses = false;
+      sedangMemproses =
+        false;
+
 
       sembunyikanLoading();
 
@@ -1183,22 +1613,80 @@ function kirimJawaban() {
         !hasil.berhasil
       ) {
 
+        sedangSubmit =
+          false;
+
+
         tampilkanPesan(
           "quizMessage",
-          hasil && hasil.pesan
+
+          hasil &&
+          hasil.pesan
             ? hasil.pesan
             : "Jawaban tidak berhasil dikirim.",
+
           "error"
         );
 
+
         return;
+
       }
 
 
-      sudahKirim = true;
+      sudahKirim =
+        true;
 
 
-      // Keluar fullscreen setelah selesai
+      /*
+       * Tampilkan hasil
+       */
+
+      document
+        .getElementById(
+          "activityBar"
+        )
+        .classList
+        .add("hidden");
+
+
+      document
+        .getElementById(
+          "quizPage"
+        )
+        .classList
+        .add("hidden");
+
+
+      document
+        .getElementById(
+          "resultPage"
+        )
+        .classList
+        .remove("hidden");
+
+
+      document
+        .getElementById(
+          "nilai"
+        )
+        .textContent =
+        hasil.nilai;
+
+
+      document
+        .getElementById(
+          "resultMessage"
+        )
+        .textContent =
+        hasil.pesan;
+
+
+      /*
+       * Keluar fullscreen setelah data
+       * sudah berhasil disimpan.
+       */
+
       if (
         document.fullscreenElement &&
         document.exitFullscreen
@@ -1206,46 +1694,23 @@ function kirimJawaban() {
 
         document
           .exitFullscreen()
-          .catch(function(){});
+          .catch(
+            function() {}
+          );
 
       }
-
-
-      document
-        .getElementById("activityBar")
-        .classList
-        .add("hidden");
-
-
-      document
-        .getElementById("quizPage")
-        .classList
-        .add("hidden");
-
-
-      document
-        .getElementById("resultPage")
-        .classList
-        .remove("hidden");
-
-
-      document
-        .getElementById("nilai")
-        .textContent =
-        hasil.nilai;
-
-
-      document
-        .getElementById("resultMessage")
-        .textContent =
-        hasil.pesan;
 
     },
 
 
     function(error) {
 
-      sedangMemproses = false;
+      sedangMemproses =
+        false;
+
+      sedangSubmit =
+        false;
+
 
       sembunyikanLoading();
 
@@ -1257,10 +1722,14 @@ function kirimJawaban() {
       );
 
     }
+
   );
+
 }
 
 </script>
 
+
 </body>
+
 </html>
