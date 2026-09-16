@@ -671,12 +671,12 @@ button {
 
 
 /* =====================================================
-   URL APPS SCRIPT
-   JANGAN DIUBAH
+   URL GOOGLE APPS SCRIPT
+   VERSI TERBARU
 ===================================================== */
 
 const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyMLV1xoWUYOaEwhgUZdd8PbonP2q_Lzhj6XituR2p4YsBCtKKyfHI1_FDTGCBcuAdWxg/exec";
+  "https://script.google.com/macros/s/AKfycbwbVTSSvGQHkOk2Klgn8fc-eKUpQ0p1Zhim1ByOgQ0aha0r2yP9OPUVRsxesP-8QRwZCQ/exec";
 
 
 /* =====================================================
@@ -765,7 +765,7 @@ function sembunyikanPesan(id) {
 
 
 /* =====================================================
-   JSONP KE APPS SCRIPT
+   JSONP KE GOOGLE APPS SCRIPT
 ===================================================== */
 
 function panggilAppsScript(
@@ -1179,13 +1179,6 @@ document.addEventListener(
         jumlahPindahTab;
 
 
-      /*
-       * SUBMIT OTOMATIS
-       *
-       * Tidak memeriksa apakah
-       * semua soal sudah diisi.
-       */
-
       kirimJawaban(true);
 
     }
@@ -1303,6 +1296,29 @@ function cekKelengkapanJawaban() {
 
 
 /* =====================================================
+   JUDUL EVALUASI SESUAI NOMOR SOAL
+===================================================== */
+
+function getJudulSoal(nomor) {
+
+  if (nomor == 1) {
+    return "Kondisi Lampu";
+  }
+
+  if (nomor == 2) {
+    return "Batas Waktu Pengumpulan";
+  }
+
+  if (nomor == 3) {
+    return "Jumlah Buku";
+  }
+
+  return "Soal " + nomor;
+
+}
+
+
+/* =====================================================
    TAMPILKAN EVALUASI
 ===================================================== */
 
@@ -1318,11 +1334,6 @@ function tampilkanEvaluasi(
 
   container.innerHTML = "";
 
-
-  /*
-   * Jika server tidak mengirim
-   * array evaluasi
-   */
 
   if (
     !Array.isArray(evaluasi)
@@ -1351,10 +1362,6 @@ function tampilkanEvaluasi(
   }
 
 
-  /*
-   * Tampilkan evaluasi setiap soal
-   */
-
   evaluasi.forEach(
     function(item) {
 
@@ -1370,22 +1377,29 @@ function tampilkanEvaluasi(
           : "evaluasi-box evaluasi-salah";
 
 
-      /* =============================================
+      const judulSoal =
+        getJudulSoal(item.soal);
+
+
+      /* =================================================
          JAWABAN BENAR
-      ============================================= */
+      ================================================= */
 
       if (item.benar) {
 
         kotak.innerHTML = `
 
           <h3>
-            Soal ${item.soal} — ✅ Benar
+            Soal ${escapeHTML(item.soal)}
+            — ${escapeHTML(judulSoal)}
+            — ✅ Benar
           </h3>
 
           <p>
             Jawaban kamu sudah sesuai
-            dengan struktur dan sintaks
-            Python yang diperlukan.
+            dengan struktur, sintaks,
+            dan logika Python yang diperlukan
+            untuk soal ini.
           </p>
 
         `;
@@ -1393,9 +1407,9 @@ function tampilkanEvaluasi(
       }
 
 
-      /* =============================================
+      /* =================================================
          JAWABAN SALAH
-      ============================================= */
+      ================================================= */
 
       else {
 
@@ -1432,7 +1446,8 @@ function tampilkanEvaluasi(
 
             <li>
               Periksa kembali penulisan
-              sintaks dan struktur kode.
+              sintaks dan struktur kode
+              pada soal ini.
             </li>
 
           `;
@@ -1440,10 +1455,36 @@ function tampilkanEvaluasi(
         }
 
 
+        let fokus = "";
+
+
+        if (item.soal == 1) {
+
+          fokus =
+            "input kondisi lampu, operator ==, if-else, tanda petik, dan konsistensi nama variabel.";
+
+        }
+
+        else if (item.soal == 2) {
+
+          fokus =
+            "input jam menggunakan int(), operator <= 15, if-else, dan konsistensi nama variabel.";
+
+        }
+
+        else if (item.soal == 3) {
+
+          fokus =
+            "input jumlah buku menggunakan int(), operator >= 3, if-else, dan konsistensi nama variabel.";
+
+        }
+
+
         kotak.innerHTML = `
 
           <h3>
-            Soal ${item.soal}
+            Soal ${escapeHTML(item.soal)}
+            — ${escapeHTML(judulSoal)}
             — ❌ Perlu Diperbaiki
           </h3>
 
@@ -1457,17 +1498,10 @@ function tampilkanEvaluasi(
 
           <p>
 
-            💡 Periksa kembali:
+            💡 Fokus perbaikan:
 
             <strong>
-              tanda petik,
-              tanda titik dua (:),
-              kurung (),
-              nama variabel,
-              operator,
-              if-else,
-              print,
-              dan indentation.
+              ${escapeHTML(fokus)}
             </strong>
 
           </p>
